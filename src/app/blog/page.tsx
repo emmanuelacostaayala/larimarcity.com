@@ -4,62 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight, BookOpen } from "lucide-react";
-
-const posts = [
-  {
-    slug: "por-que-punta-cana-es-el-mejor-destino-inversor-2026",
-    title: "Por Qué Punta Cana es el Mejor Destino Inversor en 2026",
-    category: "Inversión",
-    date: "15 Febrero 2026",
-    excerpt: "Analizamos los factores macroeconómicos que posicionan a la República Dominicana como la economía de mayor crecimiento del Caribe.",
-    image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
-  },
-  {
-    slug: "smart-city-larimar-sostenibilidad-y-tecnologia",
-    title: "Smart City Larimar: Sostenibilidad y Tecnología al Servicio del Lujo",
-    category: "Ciudad",
-    date: "8 Febrero 2026",
-    excerpt: "Cómo Larimar City integra infraestructura tecnológica, energías renovables y diseño bioclimático en un único desarrollo de clase mundial.",
-    image: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp"
-  },
-  {
-    slug: "guia-completa-confotur-inversores-extranjeros",
-    title: "Guía Completa CONFOTUR 2026: Beneficios para Inversores Extranjeros",
-    category: "Legal",
-    date: "1 Febrero 2026",
-    excerpt: "Explicamos en detalle las exenciones fiscales de la Ley 158-01 y cómo afectan directamente a tu inversión en Larimar City.",
-    image: "/images/original/villa-larimar-city-lujo.webp"
-  },
-  {
-    slug: "prime-towers-penthouses-vista-panoramica",
-    title: "Prime Towers: Los Penthouses con la Vista más Espectacular del Caribe",
-    category: "Proyectos",
-    date: "25 Enero 2026",
-    excerpt: "Un recorrido visual por los penthouses triples de Prime Towers y sus 180° de vistas al Océano Atlántico desde el Farallón.",
-    image: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp"
-  },
-  {
-    slug: "rentabilidad-airbnb-punta-cana-2026",
-    title: "Rentabilidad Airbnb en Punta Cana 2026: Datos Reales por Tipología",
-    category: "Inversión",
-    date: "18 Enero 2026",
-    excerpt: "Nuestro equipo analiza los datos reales de plataformas vacacionales y proyecta los retornos por tipo de unidad en Larimar City.",
-    image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp"
-  },
-  {
-    slug: "golf-country-club-larimar-18-hoyos",
-    title: "El Nuevo Campo de Golf de 18 Hoyos Par 72: Diseño y Primeras Imágenes",
-    category: "Lifestyle",
-    date: "10 Enero 2026",
-    excerpt: "Revelamos el diseño final del campo de golf que se integra en el Masterplan Fase I, con vistas directas al Océano desde múltiples tees.",
-    image: "/images/original/amenities-golf.webp"
-  }
-];
+import { posts } from "@/data/posts";
 
 export default function BlogPage() {
   return (
     <div className="bg-[#0a101f] min-h-screen text-white">
-
       {/* Header */}
       <section className="relative h-[40vh] min-h-[300px] flex items-end pb-16 overflow-hidden">
         <Image src="/images/original/vista-atardecer-apartamentos-punta-cana.webp" alt="Blog Larimar City" fill className="object-cover opacity-30" priority />
