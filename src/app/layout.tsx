@@ -17,10 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-stone-50 text-stone-900`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-[#0a101f] text-stone-900`}>
         <Navbar />
-        {children}
+        {/* pt-20 compensates for the fixed-position Navbar (80px) on all pages */}
+        <main className="pt-20">
+          {children}
+        </main>
       </body>
     </html>
   );
 }
+

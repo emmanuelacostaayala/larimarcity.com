@@ -88,7 +88,9 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-primary shadow-lg py-4" : "bg-transparent py-4 lg:py-6"
+            className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || pathname !== "/"
+                ? "bg-primary shadow-lg py-4"
+                : "bg-transparent py-4 lg:py-6"
                 }`}
         >
             <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between">
@@ -97,7 +99,7 @@ export default function Navbar() {
                     <img
                         src="/images/larimarlogo.png"
                         alt="Larimar City Logo"
-                        className={`h-10 lg:h-12 w-auto transition-all duration-300 object-contain ${isScrolled ? "brightness-0 invert" : ""}`}
+                        className={`h-10 lg:h-12 w-auto transition-all duration-300 object-contain ${(isScrolled || pathname !== "/") ? "brightness-0 invert" : ""}`}
                         onError={(e) => { e.currentTarget.src = "/images/larimarlogo.png" }}
                     />
                 </Link>

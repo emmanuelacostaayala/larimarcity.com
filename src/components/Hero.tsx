@@ -10,7 +10,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-slate-950">
+        <section className="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-slate-950 -mt-20">
             {/* Cinematic Background Zoom */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <div className="absolute inset-0 bg-slate-900/40 z-10 mix-blend-multiply" />
