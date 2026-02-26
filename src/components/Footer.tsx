@@ -15,7 +15,7 @@ export default function Footer() {
                     <div className="space-y-8">
                         <NextLink href="/" className="block">
                             <Image
-                                src="/images/original/larimarlogo.png"
+                                src="/images/larimarlogo.png"
                                 alt="Larimar City & Resort"
                                 width={180}
                                 height={60}
