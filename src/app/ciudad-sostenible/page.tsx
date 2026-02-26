@@ -35,7 +35,7 @@ export default function CiudadSosteniblePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-[#0a101f]/30" />
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -70,8 +70,8 @@ export default function CiudadSosteniblePage() {
       </section>
 
       {/* Core Sustainability Pillars */}
-      <section className="py-24 bg-[#0a101f] relative z-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#0a101f] relative z-20 mt-12">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
@@ -113,8 +113,8 @@ export default function CiudadSosteniblePage() {
       </section>
 
       {/* The City Section */}
-      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden mt-16">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             <motion.div
@@ -130,7 +130,7 @@ export default function CiudadSosteniblePage() {
 
               <div className="space-y-6 text-white/70 font-light leading-relaxed">
                 <p>
-                  Larimar City reduce la dependencia de infraestructuras externas obsoletas. Al construir una Smart City desde cero en el Farallón de Punta Cana, implementamos canalizaciones soterradas de fibra óptica, sistemas de iluminación pública LED inteligente y un diseño de *"Ciudad de los 15 minutos"*.
+                  Larimar City reduce la dependencia de infraestructuras externas obsoletas. Al construir una Smart City desde cero en el Farallón de Punta Cana, implementamos canalizaciones soterradas de fibra óptica, sistemas de iluminación pública LED inteligente y un diseño de <strong className="text-white font-semibold">"Ciudad de los 15 minutos"</strong>.
                 </p>
                 <p>
                   Reducimos la necesidad de vehículos mediante senderos peatonales, ciclovías y carritos de golf, conectando los complejos residenciales directamente con el Beach Club, comercios y hospitales.

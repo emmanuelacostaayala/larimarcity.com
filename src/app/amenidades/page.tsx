@@ -35,7 +35,7 @@ export default function AmenidadesPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
                 </motion.div>
 
-                <div className="container mx-auto px-4 relative z-10 pt-20">
+                <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -70,8 +70,8 @@ export default function AmenidadesPage() {
             </section>
 
             {/* The 3km Boardwalk Section */}
-            <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden">
-                <div className="container mx-auto px-4 max-w-7xl">
+            <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden mt-12">
+                <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
                         <motion.div
@@ -136,8 +136,8 @@ export default function AmenidadesPage() {
             </section>
 
             {/* Beach Club & Wellness Bento Box */}
-            <section className="py-24 bg-[#0a101f]">
-                <div className="container mx-auto px-4 max-w-7xl">
+            <section className="py-24 bg-[#0a101f] mt-16">
+                <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
                     <div className="text-center mb-16 max-w-2xl mx-auto">
                         <h2 className="font-playfair text-4xl text-white mb-4">Experiencia Beach Club & Wellness</h2>
                         <p className="text-white/60 font-light">Playas artificiales de arenas blancas, piscinas infinitas y centros de acondicionamiento físico diseñados para el bienestar absoluto.</p>

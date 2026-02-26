@@ -35,7 +35,7 @@ export default function InversionVacacionalPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,7 +56,7 @@ export default function InversionVacacionalPage() {
             </h1>
 
             <p className="text-white/80 text-lg md:text-xl font-light max-w-2xl leading-relaxed mb-10">
-              Punta Cana no es solo el destino número uno del Caribe; es una máquina de **Retorno de Inversión (ROI)** impulsada por el turismo constante. Descubre cómo Larimar City maximiza tu rentabilidad mediante gestión inteligente y ocupación premium.
+              Punta Cana no es solo el destino número uno del Caribe; es una máquina de <strong className="text-white font-semibold">Retorno de Inversión (ROI)</strong> impulsada por el turismo constante. Descubre cómo Larimar City maximiza tu rentabilidad mediante gestión inteligente y ocupación premium.
             </p>
 
             <Link
@@ -71,8 +71,8 @@ export default function InversionVacacionalPage() {
       </section>
 
       {/* Why Punta Cana Stats Grid */}
-      <section className="py-24 bg-[#0a101f] relative z-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#0a101f] relative z-20 mt-12">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             {[
               {
@@ -113,8 +113,8 @@ export default function InversionVacacionalPage() {
       </section>
 
       {/* Management Solution Module */}
-      <section className="py-24 bg-[#121c30] border-y border-white/5">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#121c30] border-y border-white/5 mt-16">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             <motion.div
@@ -154,7 +154,7 @@ export default function InversionVacacionalPage() {
 
               <div className="space-y-6 text-white/70 font-light leading-relaxed">
                 <p>
-                  El gran reto de la inversión internacional es la gestión diaria. En Larimar City, ofrecemos un modelo integral de **Property Management** diseñado para que tu propiedad genere ingresos en dólares sin que tengas que preocuparte por la logística.
+                  El gran reto de la inversión internacional es la gestión diaria. En Larimar City, ofrecemos un modelo integral de <strong className="text-white font-semibold">Property Management</strong> diseñado para que tu propiedad genere ingresos en dólares sin que tengas que preocuparte por la logística.
                 </p>
 
                 <ul className="flex flex-col gap-6 mt-8">

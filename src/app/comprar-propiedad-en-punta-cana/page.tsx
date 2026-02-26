@@ -35,7 +35,7 @@ export default function ComprarPropiedadPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -71,8 +71,8 @@ export default function ComprarPropiedadPage() {
       </section>
 
       {/* The 4 Steps Grid */}
-      <section className="py-24 bg-[#0a101f] relative z-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#0a101f] relative z-20 mt-12">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="font-playfair text-4xl text-white mb-4">4 Pasos para tu Inversión</h2>
             <p className="text-white/60 font-light">Nuestro equipo jurídico te acompaña en cada etapa, permitiéndote cerrar la compra de forma remota y 100% legal.</p>
@@ -126,8 +126,8 @@ export default function ComprarPropiedadPage() {
       </section>
 
       {/* CONFOTUR Tax Benefits */}
-      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden mt-16">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             <motion.div
@@ -146,7 +146,7 @@ export default function ComprarPropiedadPage() {
 
               <div className="space-y-6 text-white/70 font-light leading-relaxed">
                 <p>
-                  El Estado Dominicano incentiva fuertemente la inversión turística extranjera. Los proyectos aprobados por **CONFOTUR** (Consejo de Fomento Turístico), como Larimar City, disfrutan de beneficios fiscales que potencian tu ROI de manera radical.
+                  El Estado Dominicano incentiva fuertemente la inversión turística extranjera. Los proyectos aprobados por <strong className="text-white font-semibold">CONFOTUR</strong> (Consejo de Fomento Turístico), como Larimar City, disfrutan de beneficios fiscales que potencian tu ROI de manera radical.
                 </p>
 
                 <ul className="flex flex-col gap-4 mt-4">

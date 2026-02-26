@@ -35,7 +35,7 @@ export default function LaCiudadPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,15 +56,15 @@ export default function LaCiudadPage() {
             </h1>
 
             <p className="text-white/80 text-lg md:text-xl font-light max-w-2xl leading-relaxed mb-10">
-              Ubicada estratégicamente en el imponente **Farallón de Verón**, Larimar City & Resort no es solo un complejo residencial; es la primera ciudad jardín del Caribe diseñada desde cero para desafiar los límites de la ingeniería y el lujo.
+              Ubicada estratégicamente en el imponente <strong className="text-white font-semibold">Farallón de Verón</strong>, Larimar City & Resort no es solo un complejo residencial; es la primera ciudad jardín del Caribe diseñada desde cero para desafiar los límites de la ingeniería y el lujo.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* The Vision Concept */}
-      <section className="py-24 bg-[#0a101f] relative z-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#0a101f] relative z-20 mt-12">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             <motion.div
@@ -83,7 +83,7 @@ export default function LaCiudadPage() {
                   Cuando Grupo CLERHP imaginó Larimar City, el objetivo no era simplemente construir más habitaciones en Punta Cana. El propósito era resolver la falta de un urbanismo planificado y sostenible en el destino turístico más activo del Caribe.
                 </p>
                 <p>
-                  Elegimos el Farallón por su elevación única. A 100 metros sobre el nivel del mar, ofrecemos un microclima privilegiado con temperaturas más frescas, protección natural y, sobre todo, una **vista panorámica ininterrumpida de todo Punta Cana y el Océano Atlántico** que ninguna otra propiedad terreno abajo puede igualar.
+                  Elegimos el Farallón por su elevación única. A 100 metros sobre el nivel del mar, ofrecemos un microclima privilegiado con temperaturas más frescas, protección natural y, sobre todo, una <strong className="text-white font-semibold">vista panorámica ininterrumpida de todo Punta Cana y el Océano Atlántico</strong> que ninguna otra propiedad terreno abajo puede igualar.
                 </p>
               </div>
 

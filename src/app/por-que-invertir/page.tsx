@@ -35,7 +35,7 @@ export default function PorQueInvertirPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -70,8 +70,8 @@ export default function PorQueInvertirPage() {
       </section>
 
       {/* Macronomics Grid */}
-      <section className="py-24 bg-[#0a101f] relative z-20 -mt-10">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#0a101f] relative z-20 mt-12">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -108,8 +108,8 @@ export default function PorQueInvertirPage() {
       </section>
 
       {/* Tourism Engine */}
-      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="py-24 bg-[#121c30] border-y border-white/5 overflow-hidden mt-16">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
             <motion.div
@@ -177,19 +177,19 @@ export default function PorQueInvertirPage() {
 
       {/* Call to Action Callout */}
       <section className="py-32 relative text-center">
-        <div className="container mx-auto px-4 relative z-10 max-w-3xl">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 max-w-3xl">
           <h2 className="font-playfair text-4xl text-white mb-6">Elige Inteligentemente. Elige Larimar.</h2>
           <p className="text-white/70 mb-10 font-light">¿Quieres conocer por qué Grupo Clerhp, empresa cotizada en Bolsa, apostó por este mercado? Te explicamos la estructura financiera en una reunión privada.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/contacto"
-              className="px-10 py-5 bg-gold text-[#0a101f] hover:bg-white transition-colors uppercase tracking-widest text-sm font-semibold inline-block"
+              className="px-10 py-5 bg-white text-[#0a101f] hover:bg-gold hover:text-[#0a101f] transition-colors uppercase tracking-widest text-sm font-semibold inline-block rounded-sm shadow-xl"
             >
               Reunión Inversor Privado
             </Link>
             <Link
               href="/clerhp"
-              className="px-10 py-5 bg-transparent border border-white text-white hover:bg-white transition-colors uppercase tracking-widest text-sm font-semibold inline-block"
+              className="px-10 py-5 bg-transparent border border-white text-white hover:bg-white hover:text-[#0a101f] transition-colors uppercase tracking-widest text-sm font-semibold inline-block rounded-sm"
             >
               Ver Respaldo CLERHP
             </Link>

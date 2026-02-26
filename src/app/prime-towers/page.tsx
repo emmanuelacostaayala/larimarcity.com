@@ -1,64 +1,81 @@
-import { Metadata } from 'next';
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Download, Check, FileText, LayoutGrid, Calendar, ChevronRight } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: 'Prime Towers | Larimar City & Resort',
-  description: 'Descubre Prime Towers en Larimar City & Resort. Diseño vanguardista para el inversor exigente en Punta Cana.',
-};
+import { Download, Check, FileText, LayoutGrid, Calendar, ChevronRight, ArrowRight } from "lucide-react";
+import PropertyGallery from "@/components/PropertyGallery";
+import TypologySelector from "@/components/TypologySelector";
 
 export default function PrimeTowersPage() {
   return (
-    <main className="min-h-screen bg-white pt-20">
-      {/* Property Hero */}
-      <section className="relative w-full h-[70vh] min-h-[600px] flex items-end pb-24 overflow-hidden bg-primary">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-black/20 z-10" />
-          <Image
-            src="/images/original/prime-tower-penthouse-terraza-2-scaled.webp"
-            alt="Prime Towers Penthouse Terraza"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-
-        <div className="relative z-20 container mx-auto px-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-3xl">
-            <span className="inline-block px-3 py-1 mb-4 border border-secondary text-secondary text-xs uppercase tracking-widest font-semibold backdrop-blur-sm rounded-sm">
-              Fase I • Residencial
-            </span>
-            <h1 className="text-white font-playfair text-5xl md:text-7xl font-bold mb-4">
-              Prime Towers
-            </h1>
-            <p className="text-slate-200 text-lg md:text-xl font-light">
-              Diseño vanguardista para el inversor exigente. Apartamentos y Penthouses con vistas inigualables al mar y al ecosistema de Punta Cana.
-            </p>
-          </div>
-          <div className="shrink-0 flex flex-col gap-3 w-full md:w-auto">
-            <button className="w-full md:w-auto px-8 py-4 bg-secondary text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center font-medium rounded-sm">
-              Agendar una Visita <Calendar className="ml-2 w-4 h-4" />
-            </button>
-            <button className="w-full md:w-auto px-8 py-4 bg-transparent border border-white text-white hover:bg-white/10 transition-colors flex items-center justify-center font-medium rounded-sm">
-              Descargar Brochure <Download className="ml-2 w-4 h-4" />
-            </button>
+    <main className="min-h-screen bg-white">
+      {/* Property Hero with Editorial Design */}
+      <section className="relative w-full pt-32 pb-20 px-6 lg:px-12 bg-white">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+            <div className="lg:col-span-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="w-12 h-[1px] bg-secondary" />
+                  <p className="text-secondary uppercase tracking-[0.3em] font-bold text-xs">
+                    Fase I • Residencial Premium
+                  </p>
+                </div>
+                <h1 className="font-playfair text-6xl md:text-8xl text-primary leading-tight mb-8">
+                  Prime <br />
+                  <span className="text-secondary italic">Towers.</span>
+                </h1>
+                <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+                  Diseño vanguardista para el inversor exigente. Apartamentos y Penthouses con vistas inigualables al mar y al ecosistema de Punta Cana, integrando tecnología Smart Home y acabados de lujo.
+                </p>
+              </motion.div>
+            </div>
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              <button className="px-10 py-5 bg-primary text-white font-bold uppercase tracking-widest text-[10px] rounded-sm hover:bg-secondary transition-all flex items-center justify-center gap-3 shadow-xl">
+                Agendar Inversión <Calendar className="w-4 h-4" />
+              </button>
+              <button className="px-10 py-5 bg-transparent border border-primary/20 text-primary font-bold uppercase tracking-widest text-[10px] rounded-sm hover:bg-stone-50 transition-all flex items-center justify-center gap-3">
+                Brochure Completo <Download className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Property Details Grid */}
-      <section className="py-20 px-6 lg:px-12 bg-white">
+      {/* Gallery Section - Full Emphasis */}
+      <section className="px-6 lg:px-12 pb-24">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-3 gap-16">
-            <div className="lg:col-span-2">
-              <h2 className="text-3xl font-playfair font-bold text-primary mb-6">Sobre el Proyecto</h2>
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Prime Towers representa la cúspide de la elegancia arquitectónica dentro de Larimar City & Resort. Diseñado con líneas modernas y una integración perfecta con el entorno natural, este complejo residencial ofrece una experiencia de vida superior. Sus terrazas panorámicas y sus interiores meticulosamente acabados están pensados para aquellos que buscan lo mejor de Punta Cana sin renunciar a la sofisticación.
-              </p>
+          <PropertyGallery />
+        </div>
+      </section>
 
-              <h3 className="text-xl font-bold text-primary mt-10 mb-4">Características Principales</h3>
-              <ul className="grid sm:grid-cols-2 gap-4">
+      {/* Typologies & Inventory */}
+      <section className="py-24 px-6 lg:px-12 bg-stone-50 border-y border-slate-100">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="font-playfair text-4xl md:text-5xl text-primary mb-6">Unidades <span className="text-secondary italic">Disponibles.</span></h2>
+            <p className="text-slate-500 font-light">Explora las diferentes tipologías diseñadas para maximizar el confort y la rentabilidad vacacional.</p>
+          </div>
+
+          <TypologySelector />
+        </div>
+      </section>
+
+      {/* Characteristics Grid */}
+      <section className="py-24 px-6 lg:px-12 bg-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="font-playfair text-4xl text-primary mb-8 underline decoration-secondary/30 underline-offset-8">Excelencia en cada Detalle</h2>
+              <p className="text-slate-600 mb-10 leading-relaxed font-light text-lg">
+                Desde el lobby de doble altura hasta las piscinas infinity en el rooftop, Prime Towers ha sido concebido como un hito arquitectónico en el skyline de Larimar City.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-y-6 gap-x-12">
                 {[
                   "Lobby a doble altura",
                   "Piscina Infinity en Rooftop",
@@ -66,91 +83,60 @@ export default function PrimeTowersPage() {
                   "Área de BBQ y Lounge",
                   "Parqueo techado",
                   "Seguridad 24/7",
-                  "Vistas al campo de golf",
-                  "Acabados premium (Roca, etc.)"
+                  "Acabados premium (Roca, etc.)",
+                  "Sistema Smart Home Integrado"
                 ].map((feature, i) => (
-                  <li key={i} className="flex items-center text-slate-700">
-                    <Check className="w-5 h-5 text-secondary mr-3 shrink-0" />
-                    <span>{feature}</span>
-                  </li>
+                  <div key={i} className="flex items-center text-slate-700 group">
+                    <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center mr-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                      <Check className="w-3 h-3" />
+                    </div>
+                    <span className="text-sm font-medium">{feature}</span>
+                  </div>
                 ))}
-              </ul>
-            </div>
-
-            <div className="bg-stone-50 p-8 rounded-md border border-slate-100 flex flex-col">
-              <h3 className="text-xl font-bold text-primary mb-6 border-b border-slate-200 pb-4">Recursos del Inversor</h3>
-              <div className="space-y-4 flex-grow">
-                <Link href="#" className="flex items-center p-4 bg-white rounded-sm border border-slate-200 hover:border-secondary hover:shadow-md transition-all group">
-                  <div className="w-10 h-10 bg-secondary/10 flex items-center justify-center rounded-full mr-4 text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
-                    <FileText className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-primary">Memoria de Calidades</p>
-                    <p className="text-xs text-slate-500">PDF • 2.4 MB</p>
-                  </div>
-                </Link>
-                <Link href="#" className="flex items-center p-4 bg-white rounded-sm border border-slate-200 hover:border-secondary hover:shadow-md transition-all group">
-                  <div className="w-10 h-10 bg-secondary/10 flex items-center justify-center rounded-full mr-4 text-secondary group-hover:bg-secondary group-hover:text-white transition-colors">
-                    <LayoutGrid className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-primary">Planos Arquitectónicos</p>
-                    <p className="text-xs text-slate-500">PDF • 5.1 MB</p>
-                  </div>
-                </Link>
               </div>
+            </div>
+            <div className="relative aspect-square">
+              <Image
+                src="/images/original/prime-towers-noche-larimar-city-1024x576.webp"
+                alt="Prime Towers Luxury"
+                fill
+                className="object-cover rounded-sm border border-slate-100 shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Inventory & Pricing List */}
-      <section className="py-20 px-6 lg:px-12 bg-primary text-white">
-        <div className="container mx-auto max-w-5xl">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-playfair font-bold text-white mb-4">Disponibilidad de Unidades</h2>
-            <p className="text-slate-300 font-light">Inventario actualizado de Prime Towers. Reserve su unidad hoy mismo.</p>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-md rounded-md overflow-hidden border border-white/10">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-white/10 text-white uppercase text-xs tracking-wider">
-                    <th className="p-4 font-semibold">Tipología</th>
-                    <th className="p-4 font-semibold">Habitaciones</th>
-                    <th className="p-4 font-semibold">M² Totales</th>
-                    <th className="p-4 font-semibold">Precio desde</th>
-                    <th className="p-4 font-semibold">Estado</th>
-                    <th className="p-4 font-semibold"></th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/10 text-slate-200 text-sm">
-                  {[
-                    { type: "Apartamento Tipo A", beds: 1, sqft: "75 m²", price: "$145,000", status: "Disponible" },
-                    { type: "Apartamento Tipo B", beds: 2, sqft: "115 m²", price: "$210,000", status: "Disponible" },
-                    { type: "Apartamento Tipo C", beds: 3, sqft: "155 m²", price: "$285,000", status: "Pocas Unidades" },
-                    { type: "Penthouse", beds: 4, sqft: "280 m²", price: "$490,000", status: "Vendido" },
-                  ].map((unit, i) => (
-                    <tr key={i} className="hover:bg-white/5 transition-colors">
-                      <td className="p-4 font-medium text-white">{unit.type}</td>
-                      <td className="p-4">{unit.beds} Hab</td>
-                      <td className="p-4">{unit.sqft}</td>
-                      <td className="p-4 text-secondary font-semibold">{unit.price}</td>
-                      <td className="p-4">
-                        <span className={`px-2 py-1 text-xs rounded-sm font-medium ${unit.status === 'Disponible' ? 'bg-green-500/20 text-green-300' : unit.status === 'Vendido' ? 'bg-red-500/20 text-red-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
-                          {unit.status}
-                        </span>
-                      </td>
-                      <td className="p-4 text-right">
-                        <button className="text-secondary hover:text-white transition-colors" disabled={unit.status === 'Vendido'}>
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {/* Resource Footer */}
+      <section className="py-24 bg-primary text-white px-6 lg:px-12">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="md:col-span-2">
+              <h3 className="font-playfair text-3xl mb-8">Documentación Técnica</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  { title: "Memoria de Calidades", type: "PDF", size: "2.4 MB", icon: <FileText /> },
+                  { title: "Planos Arquitectónicos", type: "PDF", size: "5.1 MB", icon: <LayoutGrid /> }
+                ].map((doc, i) => (
+                  <Link href="#" key={i} className="p-6 bg-white/5 border border-white/10 hover:border-secondary transition-all group flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="text-secondary opacity-50 group-hover:opacity-100 transition-opacity">{doc.icon}</div>
+                      <div>
+                        <p className="font-bold text-sm tracking-wide">{doc.title}</p>
+                        <p className="text-[10px] text-white/40 uppercase">{doc.type} • {doc.size}</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-white/20 group-hover:text-secondary group-hover:translate-x-1 transition-all" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-sm">
+              <h4 className="font-playfair text-2xl mb-4 text-secondary">¿Buscas algo más?</h4>
+              <p className="text-white/50 text-sm mb-8 font-light italic">"Nuestro equipo de legal y ventas está disponible para enviarte el inventario en tiempo real y resolver dudas sobre la Ley CONFOTUR."</p>
+              <Link href="/contacto" className="text-white hover:text-secondary transition-colors text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                Contactar con C.D.O <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
