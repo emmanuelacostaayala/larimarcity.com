@@ -9,8 +9,8 @@ import Link from "next/link";
 const hotspots = [
     {
         id: "prime",
-        x: "45%",
-        y: "40%",
+        x: "71%",
+        y: "47%",
         title: "Prime Towers",
         desc: "El corazón cosmopolita de Fase I. Comodidad y vistas al farallón.",
         href: "/prime-towers",
@@ -19,8 +19,8 @@ const hotspots = [
     },
     {
         id: "horizon",
-        x: "60%",
-        y: "45%",
+        x: "53%",
+        y: "22%",
         title: "Horizon View",
         desc: "Vistas infinitas al océano desde la cota más alta.",
         href: "/horizon-view",
@@ -29,8 +29,8 @@ const hotspots = [
     },
     {
         id: "villas",
-        x: "30%",
-        y: "60%",
+        x: "35%",
+        y: "45%",
         title: "Villas Golf",
         desc: "Privacidad absoluta frente al campo de golf de 18 hoyos.",
         href: "/villas",
@@ -39,8 +39,8 @@ const hotspots = [
     },
     {
         id: "beach",
-        x: "70%",
-        y: "35%",
+        x: "78%",
+        y: "32%",
         title: "Beach Club",
         desc: "Piscinas infinity y arenas blancas sobre el farallón.",
         href: "/amenidades",
@@ -53,13 +53,13 @@ export default function MasterPlanMap() {
     const [activeId, setActiveId] = useState<string | null>(null);
 
     return (
-        <div className="relative w-full aspect-[16/9] lg:aspect-[21/9] bg-[#0a101f] overflow-hidden rounded-sm border border-white/10 group shadow-2xl">
+        <div className="relative w-full aspect-[16/9] bg-[#0a101f] overflow-hidden rounded-sm border border-white/10 group shadow-2xl">
             {/* Base Map Image */}
             <Image
-                src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+                src="/images/original/LARIMAR_MASTERPLAN_Usos.webp"
                 alt="Larimar City Master Plan"
                 fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="object-contain transition-transform duration-1000 group-hover:scale-105"
             />
 
             {/* Overlay Gradient */}
