@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {/* Main Content */}
                     <div className="lg:col-span-8">
                         <div
-                            className="prose prose-lg max-w-none prose-headings:font-playfair prose-headings:text-primary prose-p:text-slate-600 prose-a:text-secondary prose-strong:text-primary"
+                            className="max-w-none text-[#334155] [&>p:first-of-type]:text-2xl [&>p:first-of-type]:font-light [&>p:first-of-type]:leading-relaxed [&>p:first-of-type]:mb-10 [&>p:first-of-type]:text-[#1e293b] [&>h3]:font-playfair [&>h3]:text-3xl [&>h3]:md:text-4xl [&>h3]:font-bold [&>h3]:text-[#0a101f] [&>h3]:mt-16 [&>h3]:mb-8 [&>h3]:border-l-4 [&>h3]:border-gold [&>h3]:pl-6 [&>p]:text-lg [&>p]:leading-relaxed [&>p]:mb-8 [&>ul]:list-none [&>ul]:pl-0 [&>ul]:mb-8 [&>ul>li]:relative [&>ul>li]:pl-6 [&>ul>li]:mb-4 [&>ul>li]:before:content-[''] [&>ul>li]:before:absolute [&>ul>li]:before:left-0 [&>ul>li]:before:top-3 [&>ul>li]:before:w-2 [&>ul>li]:before:h-2 [&>ul>li]:before:bg-gold [&>ul>li]:before:rounded-full [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-8 [&>ol>li]:mb-4 [&>ol>li::marker]:text-gold [&>ol>li::marker]:font-bold [&>strong]:text-[#0a101f] [&>blockquote]:border-l-4 [&>blockquote]:border-gold [&>blockquote]:bg-slate-50 [&>blockquote]:p-8 [&>blockquote]:my-12 [&>blockquote]:text-2xl [&>blockquote]:font-playfair [&>blockquote]:italic [&>blockquote]:text-[#0a101f] [&>blockquote]:rounded-r-xl"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
 
