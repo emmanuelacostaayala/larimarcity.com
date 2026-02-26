@@ -3,140 +3,110 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { MapPin, X, ArrowRight, Building2, Trees, Waves } from "lucide-react";
-import Link from "next/link";
+import { Plus } from "lucide-react";
+
+// Native image dimensions for precise mapping
+const NATIVE_WIDTH = 1447;
+const NATIVE_HEIGHT = 836;
+// Aspect ratio padding = (836 / 1447) * 100 = 57.7747%
+const PADDING_BOTTOM = "57.7747%";
 
 const hotspots = [
-    {
-        id: "prime",
-        x: "71%",
-        y: "47%",
-        title: "Prime Towers",
-        desc: "El corazón cosmopolita de Fase I. Comodidad y vistas al farallón.",
-        href: "/prime-towers",
-        icon: <Building2 className="w-5 h-5" />,
-        color: "bg-gold"
-    },
-    {
-        id: "horizon",
-        x: "53%",
-        y: "22%",
-        title: "Horizon View",
-        desc: "Vistas infinitas al océano desde la cota más alta.",
-        href: "/horizon-view",
-        icon: <Building2 className="w-5 h-5" />,
-        color: "bg-gold"
-    },
-    {
-        id: "villas",
-        x: "35%",
-        y: "45%",
-        title: "Villas Golf",
-        desc: "Privacidad absoluta frente al campo de golf de 18 hoyos.",
-        href: "/villas",
-        icon: <Trees className="w-5 h-5" />,
-        color: "bg-[#4FB0C6]"
-    },
-    {
-        id: "beach",
-        x: "78%",
-        y: "32%",
-        title: "Beach Club",
-        desc: "Piscinas infinity y arenas blancas sobre el farallón.",
-        href: "/amenidades",
-        icon: <Waves className="w-5 h-5" />,
-        color: "bg-secondary"
-    }
+    { id: 0, x: "36.79%", y: "32.05%", title: "HOTEL" },
+    { id: 1, x: "59.69%", y: "16.30%", title: "RESIDENCIAL" },
+    { id: 2, x: "51.00%", y: "45.94%", title: "CAMPO DE GOLF" },
+    { id: 3, x: "57.60%", y: "53.81%", title: "HOTEL" },
+    { id: 4, x: "39.37%", y: "57.09%", title: "SERVICIOS" },
+    { id: 5, x: "45.88%", y: "42.00%", title: "RESIDENCIAL" },
+    { id: 6, x: "54.57%", y: "23.65%", title: "RESIDENCIAL" },
+    { id: 7, x: "90.90%", y: "68.81%", title: "COMERCIAL" },
+    { id: 8, x: "50.47%", y: "30.30%", title: "RESIDENCIAL" },
+    { id: 9, x: "79.21%", y: "41.90%", title: "HOTEL" },
+    { id: 10, x: "68.88%", y: "23.61%", title: "HOTEL" },
+    { id: 11, x: "65.30%", y: "15.66%", title: "HOTEL" },
+    { id: 12, x: "59.50%", y: "35.59%", title: "RESIDENCIAL" },
+    { id: 13, x: "66.98%", y: "37.53%", title: "BOULEVARD" },
+    { id: 14, x: "77.44%", y: "32.76%", title: "MALECÓN" },
+    { id: 15, x: "81.11%", y: "57.24%", title: "HOTEL" },
+    { id: 16, x: "63.43%", y: "24.78%", title: "RESIDENCIAL" },
+    { id: 17, x: "66.44%", y: "50.77%", title: "RESIDENCIAL" },
+    { id: 18, x: "63.04%", y: "10.21%", title: "HOTEL" },
+    { id: 19, x: "75.67%", y: "51.52%", title: "RESIDENCIAL" },
+    { id: 20, x: "73.80%", y: "34.03%", title: "HOTEL" },
+    { id: 21, x: "86.05%", y: "56.28%", title: "CAMPO DE GOLF" },
+    { id: 22, x: "70.69%", y: "43.03%", title: "RESIDENCIAL" },
+    { id: 23, x: "86.95%", y: "73.12%", title: "SERVICIOS" }
 ];
 
 export default function MasterPlanMap() {
-    const [activeId, setActiveId] = useState<string | null>(null);
+    const [activeId, setActiveId] = useState<number | null>(null);
 
     return (
-        <div className="relative w-full aspect-[16/9] bg-[#0a101f] overflow-hidden rounded-sm border border-white/10 group shadow-2xl">
-            {/* Base Map Image */}
-            <Image
-                src="/images/original/LARIMAR_MASTERPLAN_Usos.webp"
-                alt="Larimar City Master Plan"
-                fill
-                className="object-contain transition-transform duration-1000 group-hover:scale-105"
-            />
+        <div className="w-full bg-[#f8f9fa] rounded-sm border border-black/5 shadow-xl overflow-hidden relative group">
 
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f]/80 via-transparent to-transparent pointer-events-none" />
+            {/* Aspect Ratio Container */}
+            <div className="relative w-full" style={{ paddingBottom: PADDING_BOTTOM }}>
 
-            {/* Hotspots Container */}
-            <div className="absolute inset-0 z-10">
-                {hotspots.map((spot) => (
-                    <div
-                        key={spot.id}
-                        className="absolute -translate-x-1/2 -translate-y-1/2"
-                        style={{ left: spot.x, top: spot.y }}
-                    >
-                        <button
-                            onClick={() => setActiveId(spot.id)}
-                            className={`relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full ${spot.color} text-white shadow-lg shadow-black/50 hover:scale-110 transition-transform group/btn`}
+                {/* Image filling perfectly */}
+                <Image
+                    src="/images/original/LARIMAR_MASTERPLAN_Fases.webp"
+                    alt="Larimar City Master Plan"
+                    fill
+                    className="object-cover absolute inset-0"
+                    priority
+                    sizes="100vw"
+                />
+
+                {/* Hotspots layer pinned to exact aspect ratio box */}
+                <div className="absolute inset-0 z-10 pointer-events-none">
+                    {hotspots.map((spot) => (
+                        <div
+                            key={spot.id}
+                            id={`hotspot-${spot.id}`}
+                            className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto hover:z-50"
+                            style={{ left: spot.x, top: spot.y }}
                         >
-                            <div className={`absolute inset-0 rounded-full animate-ping ${spot.color} opacity-40`} />
-                            <MapPin className="w-5 h-5 relative z-10" />
-                        </button>
-                    </div>
-                ))}
+                            <div className="relative group/spot">
+                                <button
+                                    onClick={() => setActiveId(activeId === spot.id ? null : spot.id)}
+                                    className={`flex items-center justify-center w-5 h-5 md:w-8 md:h-8 lg:w-9 lg:h-9 rounded-full bg-black text-white border-2 border-white shadow-[0_0_10px_rgba(0,0,0,0.5)] transform transition-transform duration-300 ${activeId === spot.id ? 'scale-125 z-30' : 'hover:scale-110'}`}
+                                >
+                                    <Plus className={`w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 transition-transform duration-300 ${activeId === spot.id ? 'rotate-45' : ''}`} />
+                                </button>
+
+                                {/* Tooltip on Hover or Active - Hide while dragging for better visibility */}
+                                <AnimatePresence>
+                                    {(activeId === spot.id) && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                                            animate={{ opacity: 1, scale: 1, y: -45 }}
+                                            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                                            className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#0a2e52] text-white px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs lg:text-sm font-bold rounded shadow-xl pointer-events-none z-40 transform origin-bottom"
+                                        >
+                                            {spot.title}
+                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0a2e52] rotate-45" />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Close overlay */}
+                {activeId !== null && (
+                    <div
+                        className="absolute inset-0 z-0 bg-black/5 cursor-pointer"
+                        onClick={() => setActiveId(null)}
+                    />
+                )}
             </div>
 
-            {/* Info Card / Sidebar */}
-            <AnimatePresence>
-                {activeId && (
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 50 }}
-                        className="absolute right-4 top-4 bottom-4 w-72 md:w-80 bg-[#0a101f]/95 backdrop-blur-md border border-white/10 p-8 z-20 flex flex-col justify-between shadow-2xl rounded-sm"
-                    >
-                        <div>
-                            <button
-                                onClick={() => setActiveId(null)}
-                                className="absolute right-4 top-4 text-white/50 hover:text-white transition-colors"
-                                aria-label="Cerrar"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-
-                            {(() => {
-                                const spot = hotspots.find(s => s.id === activeId);
-                                if (!spot) return null;
-                                return (
-                                    <>
-                                        <div className={`w-12 h-12 rounded-full ${spot.color} flex items-center justify-center text-white mb-6 border border-white/20`}>
-                                            {spot.icon}
-                                        </div>
-                                        <h3 className="font-playfair text-3xl text-white mb-4">{spot.title}</h3>
-                                        <p className="text-white/60 text-sm leading-relaxed mb-8">
-                                            {spot.desc}
-                                        </p>
-                                    </>
-                                );
-                            })()}
-                        </div>
-
-                        <Link
-                            href={hotspots.find(s => s.id === activeId)?.href || "#"}
-                            className="group flex items-center justify-between py-4 border-t border-white/10 text-white hover:text-gold transition-colors text-sm font-bold tracking-widest uppercase"
-                        >
-                            Ver Detalles del Proyecto
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                        </Link>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
             {/* Map Hint */}
-            {!activeId && (
-                <div className="absolute bottom-8 left-8 p-4 bg-black/40 backdrop-blur-sm border border-white/10 text-white rounded-sm pointer-events-none animate-pulse">
-                    <p className="text-[10px] uppercase tracking-widest font-bold opacity-70 mb-1">Mapa Interactivo</p>
-                    <p className="text-sm">Selecciona los puntos para explorar la Fase I</p>
-                </div>
-            )}
+            <div className="absolute bottom-6 left-6 p-3 bg-white/90 backdrop-blur-sm border border-black/10 text-black rounded shadow-lg pointer-events-none z-20">
+                <p className="text-[10px] uppercase tracking-widest font-bold opacity-70 mb-1">Plan Maestro</p>
+                <p className="text-xs font-semibold">Explora las fases y usos de Larimar City</p>
+            </div>
         </div>
     );
 }
