@@ -269,8 +269,10 @@ export default function Home() {
                 <img src="/images/original/TownHauses_4-1-ri4w1xsw9ixqyzeca6571uwwit1dr22tt235hm6afg.webp" alt="Townhouses Adosados" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3000ms] ease-out" />
               </div>
               <div className="w-full lg:w-[45%] lg:-ml-32 mt-[-50px] lg:mt-0 relative z-10 bg-white p-10 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.1)] border border-slate-100 rounded-sm">
-                <span className="text-secondary opacity-50 font-playfair text-6xl absolute top-4 right-8 -z-10 select-none">01</span>
-                <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">Townhouses Adosados</h3>
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary">Townhouses Adosados</h3>
+                  <span className="text-secondary opacity-50 font-playfair text-5xl select-none leading-none mt-1">01</span>
+                </div>
                 <p className="text-lg text-slate-600 font-light mb-10 leading-relaxed">Villas adosadas de lujo dispuestas en abanico con acceso inmediato y vistas sin restricciones a nuestros campos de golf de autor.</p>
 
                 <div className="grid grid-cols-2 gap-8 mb-10 border-t border-b border-slate-100 py-6">
@@ -301,8 +303,10 @@ export default function Home() {
                 <img src="/images/original/Horizon-View_8-ri5kqdv6155iqevpdpfjb5uhsw007w5cagi2byv77w.webp" alt="Horizon View" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3000ms] ease-out" />
               </div>
               <div className="w-full lg:w-[45%] lg:-mr-32 mt-[-50px] lg:mt-0 relative z-10 bg-white p-10 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.1)] border border-slate-100 rounded-sm">
-                <span className="text-secondary opacity-50 font-playfair text-6xl absolute top-4 right-8 -z-10 select-none">02</span>
-                <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">Horizon View</h3>
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary">Horizon View</h3>
+                  <span className="text-secondary opacity-50 font-playfair text-5xl select-none leading-none mt-1">02</span>
+                </div>
                 <p className="text-lg text-slate-600 font-light mb-10 leading-relaxed">Un complejo de alta densidad elevado a 100 metros sobre el mar, marcando el pináculo de las residencias tipo resort en Punta Cana.</p>
 
                 <div className="grid grid-cols-2 gap-8 mb-10 border-t border-b border-slate-100 py-6">
@@ -333,8 +337,10 @@ export default function Home() {
                 <img src="/images/original/prime-tower-penthouse-terraza-1-scaled.webp" alt="Prime Towers" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3000ms] ease-out object-top" />
               </div>
               <div className="w-full lg:w-[45%] lg:-ml-32 mt-[-50px] lg:mt-0 relative z-10 bg-white p-10 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.1)] border border-slate-100 rounded-sm">
-                <span className="text-secondary opacity-50 font-playfair text-6xl absolute top-4 right-8 -z-10 select-none">03</span>
-                <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary mb-6">Prime Towers</h3>
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-4xl md:text-5xl font-playfair font-bold text-primary">Prime Towers</h3>
+                  <span className="text-secondary opacity-50 font-playfair text-5xl select-none leading-none mt-1">03</span>
+                </div>
                 <p className="text-lg text-slate-600 font-light mb-10 leading-relaxed">Evolución estructural en torres curvas. Penthouses exquisitos donde la rentabilidad se fusiona con el diseño orgánico.</p>
 
                 <div className="grid grid-cols-2 gap-8 mb-10 border-t border-b border-slate-100 py-6">

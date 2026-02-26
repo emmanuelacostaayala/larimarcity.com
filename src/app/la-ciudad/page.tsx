@@ -35,7 +35,7 @@ export default function LaCiudadPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] via-transparent to-transparent" />
         </motion.div>
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-32 lg:pt-40">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -43,10 +43,9 @@ export default function LaCiudadPage() {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-3 mb-6">
-              <span className="w-12 h-[1px] bg-gold" />
-              <p className="text-gold uppercase tracking-[0.3em] text-sm font-bold">
+              <span className="px-4 py-2 border border-gold/30 rounded-full bg-gold/10 text-gold uppercase tracking-[0.2em] text-xs font-bold backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
                 100 Metros Sobre el Nivel del Mar
-              </p>
+              </span>
             </div>
 
             <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[1.1]">
@@ -105,13 +104,15 @@ export default function LaCiudadPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative h-[700px] w-full"
+              className="relative h-[400px] lg:h-[700px] w-full mt-10 lg:mt-0"
             >
               <Image
                 src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
                 alt="El Farallón de Larimar City"
                 fill
-                className="object-cover object-left rounded-sm"
+                className="object-cover object-center lg:object-left rounded-sm"
+                quality={100}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 border border-white/20 rounded-sm" />
 

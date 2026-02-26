@@ -24,7 +24,7 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="relative z-20 container mx-auto px-6 md:px-12 flex flex-col items-center text-center mt-16">
+            <div className="relative z-20 container mx-auto px-6 md:px-12 flex flex-col items-center text-center mt-28 md:mt-16">
                 <motion.div
                     variants={blurReveal}
                     initial="hidden"
@@ -92,7 +92,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
+                className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20"
             >
                 <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase font-bold">Descubrir</span>
                 <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
