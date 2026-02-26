@@ -99,8 +99,8 @@ export default function ContactoPage() {
 
               <div className="flex flex-col gap-8">
                 {[
-                  { icon: <MapPin />, title: "Sede Central (España)", lines: ["Paseo de la Castellana 200", "Madrid 28046, España"] },
-                  { icon: <Globe />, title: "Operaciones (Caribe)", lines: ["Avenida España Km. 8", "Verón, Higüey — El Seibo, RD"] },
+                  { icon: <MapPin />, title: "Sede Central (España)", lines: ["Avenida Europa, 3B Entresuelo 1", "30007 Murcia, España"] },
+                  { icon: <Globe />, title: "Operaciones (Caribe)", lines: ["Edf. Aqua, Av. 1ro de Noviembre 801", "Punta Cana 23000, RD"] },
                   { icon: <Phone />, title: "Teléfonos", lines: ["+34 900 000 000 (España)", "+1 809 000 0000 (RD)"] },
                   { icon: <Mail />, title: "Email", lines: ["info@larimarcity.com", "inversores@larimarcity.com"] },
                   { icon: <Clock />, title: "Horario de Atención", lines: ["Lunes a Viernes: 9:00 - 19:00 CET", "Sábados: 10:00 - 14:00 CET"] },

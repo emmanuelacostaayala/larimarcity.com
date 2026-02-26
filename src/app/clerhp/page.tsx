@@ -106,7 +106,7 @@ export default function ClerhpCorporatePage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { city: "Madrid, España", desc: "Sede Central Corporativa (HQ) y Relación con Inversores Europeos." },
+                            { city: "Murcia, España", desc: "Sede Central Corporativa (HQ) y Relación con Inversores Europeos." },
                             { city: "Punta Cana, RD", desc: "Hub Operativo del Caribe y Dirección de Proyecto Larimar City." },
                             { city: "Santa Cruz, Bolivia", desc: "Centro de Ingeniería Estructural y Operaciones Latam Sur." }
                         ].map((office, idx) => (

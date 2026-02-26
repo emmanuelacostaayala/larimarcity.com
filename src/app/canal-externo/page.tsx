@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const locations = [
     { city: "Santo Domingo", country: "Rep. Dominicana", type: "Oficina Híbrida", address: "Av. Winston Churchill, Blue Mall", coords: "18.47, -69.94" },
     { city: "Punta Cana", country: "Rep. Dominicana", type: "Punto de Venta", address: "Boulevard Turístico del Este", coords: "18.58, -68.40" },
-    { city: "Madrid", country: "España", type: "Sede Central Grupo Clerhp", address: "Paseo de la Castellana", coords: "40.41, -3.70" },
+    { city: "Murcia", country: "España", type: "Sede Central Grupo Clerhp", address: "Avenida Europa, 3B Entresuelo 1", coords: "37.99, -1.13" },
     { city: "Miami", country: "USA", type: "Master Broker", address: "Brickell Avenue", coords: "25.76, -80.19" },
     { city: "Bogotá", country: "Colombia", type: "Master Broker", address: "Calle 93, Chicó", coords: "4.67, -74.05" }
 ];
