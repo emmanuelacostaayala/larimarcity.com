@@ -153,7 +153,7 @@ export default function PrimeTowersPage() {
             </div>
             <div className="relative aspect-square">
               <Image
-                src="/images/original/prime-towers-noche-larimar-city-1024x576.webp"
+                src="/images/original/prime-towers-noche-larimar-city.webp"
                 alt="Prime Towers Luxury"
                 fill
                 className="object-cover rounded-sm border border-slate-100 shadow-2xl"

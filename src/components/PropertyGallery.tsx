@@ -6,10 +6,11 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
 const images = [
-    { src: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp", alt: "Penthouse Terrace View" },
-    { src: "/images/original/prime-towers-noche-larimar-city-1024x576.webp", alt: "Prime Towers Night View" },
-    { src: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp", alt: "Luxury Interior Integration" },
-    { src: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp", alt: "Skyview Perspective" }
+    { src: "/images/original/prime-towers-exterior-12.webp", alt: "Prime Towers Exterior Arch View" },
+    { src: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp", alt: "Prime Towers Penthouse Terrace" },
+    { src: "/images/original/Salon_Atardecer-prime-towers-scaled.jpg", alt: "Prime Towers Living Room Sunset" },
+    { src: "/images/original/prime-towers-noche-larimar-city.webp", alt: "Prime Towers Night View" },
+    { src: "/images/original/SR_Int_11-scaled.webp", alt: "Prime Towers Premium Interior" }
 ];
 
 export default function PropertyGallery() {

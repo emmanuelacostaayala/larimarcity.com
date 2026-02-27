@@ -15,7 +15,7 @@ export default function ClerhpCorporatePage() {
             {/* Hero Section */}
             <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
                 <Image
-                    src="/images/original/prime-tower-penthouse-terraza-2-scaled.webp" // Premium corporate background
+                    src="/images/original/vista-aerea-scaled.jpg" // Premium corporate background
                     alt="CLERHP Estructuras Edificaciones"
                     fill
                     className="object-cover object-center opacity-40"

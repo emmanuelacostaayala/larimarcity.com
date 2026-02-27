@@ -26,7 +26,7 @@ export default function CanalExternoPage() {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-primary/80 z-10" />
                     <Image
-                        src="/images/original/fachada-principal-3-600x337.webp"
+                        src="/images/original/fachada-principal-3.webp"
                         alt="Business Center"
                         fill
                         className="object-cover opacity-50"
@@ -124,9 +124,9 @@ export default function CanalExternoPage() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
-                            { name: "Miami Realty Group", rep: "Elena Valdés", role: "Principal Broker", location: "Miami, USA", img: "/images/original/vista-atardecer-apartamentos-punta-cana.webp", logo: "MRG" },
-                            { name: "EuroInvest Partners", rep: "Carlos Ruiz", role: "Managing Director", location: "Madrid, ES", img: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp", logo: "EIP" },
-                            { name: "Caribe Prime Estates", rep: "Sofia Méndez", role: "CEO & Founder", location: "Santo Domingo, DR", img: "/images/original/MASTERPLAN_PLAYA_1024x576.webp", logo: "CPE" }
+                            { name: "Miami Realty Group", rep: "Elena Valdés", role: "Principal Broker", location: "Miami, USA", img: "/images/original/MARTA-MARCILLA.jpg", logo: "MRG" },
+                            { name: "EuroInvest Partners", rep: "Carlos Ruiz", role: "Managing Director", location: "Madrid, ES", img: "/images/original/Gilberto-Pezzotta-perfil.jpg", logo: "EIP" },
+                            { name: "Caribe Prime Estates", rep: "Sofia Méndez", role: "CEO & Founder", location: "Santo Domingo, DR", img: "/images/original/Marisol-Baez-imagen-perfil.png", logo: "CPE" }
                         ].map((broker, idx) => (
                             <div key={idx} className="bg-white border border-slate-100 rounded-sm overflow-hidden hover:border-secondary transition-all group shadow-sm hover:shadow-xl">
                                 <div className="relative h-80">

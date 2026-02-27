@@ -202,7 +202,7 @@ export default function Home() {
               className="lg:col-span-7 relative h-[600px] lg:h-[850px] rounded-sm overflow-hidden group shadow-2xl"
             >
               <img
-                src="/images/original/villa-larimar-city-diseno-1536x864.webp"
+                src="/images/original/villa-larimar-city-diseno.webp"
                 alt="Larimar City Masterplan Fase 1"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
               />
@@ -307,7 +307,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.5 }}
               className="group relative h-[400px] rounded-sm overflow-hidden cursor-pointer lg:col-span-2"
             >
-              <img src="/images/original/breezer_towers_interior_bajo_1-1536x864.webp" alt="Beauty District" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms] ease-out" />
+              <img src="/images/original/breezer_towers_interior_bajo_1.webp" alt="Beauty District" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms] ease-out" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/30 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-1000"></div>
               <div className="absolute bottom-8 left-10">
                 <span className="text-secondary uppercase tracking-[0.3em] text-xs font-bold mb-3 block">{t.amenities[4].category}</span>

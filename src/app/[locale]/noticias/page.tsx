@@ -13,7 +13,7 @@ const noticias = {
       category: "Desarrollo",
       title: "Larimar City Supera el 60% de Comercialización en su Fase I",
       excerpt: "El proyecto de la Smart City dominicana continúa su sólido ritmo de ventas en mercados europeos y latinoamericanos.",
-      image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+      image: "/images/original/Farallon_Fase-1_larimar-city.webp"
     },
     {
       date: "14 Feb 2026",
@@ -27,7 +27,7 @@ const noticias = {
       category: "Obra",
       title: "Inicio de Cimentaciones de Prime Towers: Las Obras Avanzan Según Cronograma",
       excerpt: "El equipo de ingeniería de CLERHP inicia la fase de cimentación de las dos torres, marcando un hito en la construcción de Larimar City.",
-      image: "/images/original/prime-towers-noche-larimar-city-1024x576.webp"
+      image: "/images/original/prime-towers-noche-larimar-city.webp"
     },
     {
       date: "28 Ene 2026",
@@ -43,7 +43,7 @@ const noticias = {
       category: "Development",
       title: "Larimar City Exceeds 60% Sales in Phase I",
       excerpt: "The Dominican Smart City project continues its strong sales pace in European and Latin American markets.",
-      image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+      image: "/images/original/Farallon_Fase-1_larimar-city.webp"
     },
     {
       date: "Feb 14, 2026",
@@ -57,7 +57,7 @@ const noticias = {
       category: "Construction",
       title: "Start of Prime Towers Foundations: Works Progress on Schedule",
       excerpt: "The CLERHP engineering team begins the foundation phase of the two towers, marking a milestone in the construction of Larimar City.",
-      image: "/images/original/prime-towers-noche-larimar-city-1024x576.webp"
+      image: "/images/original/prime-towers-noche-larimar-city.webp"
     },
     {
       date: "Jan 28, 2026",
@@ -78,7 +78,7 @@ export default function NoticiasPage() {
 
       {/* Header */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden flex flex-col justify-end">
-        <Image src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp" alt="Noticias Larimar City" fill className="object-cover opacity-30" priority />
+        <Image src="/images/original/beach-club-bar-fase-1-larimarcity-resort.webp" alt="Noticias Larimar City" fill className="object-cover opacity-30" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] to-transparent" />
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <div className="flex items-center gap-3 mb-4">

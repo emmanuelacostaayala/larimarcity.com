@@ -208,7 +208,7 @@ export default function InversionVacacionalPage() {
       <section id="calculadora" className="py-32 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+            src="/images/original/larimarcity-fondo-promociones.webp"
             alt="Larimar City Masterplan"
             fill
             className="object-cover object-center opacity-30"

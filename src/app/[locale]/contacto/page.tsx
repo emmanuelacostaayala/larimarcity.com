@@ -16,7 +16,7 @@ export default function ContactoPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden flex flex-col justify-end">
         <Image
-          src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+          src="/images/original/chica-larimarcity-sombrero.webp"
           alt="Contacto Larimar City"
           fill
           className="object-cover object-center opacity-30"

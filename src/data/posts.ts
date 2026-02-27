@@ -27,7 +27,7 @@ export const posts: BlogPost[] = [
         date: "26 Febrero 2026",
         excerpt: "Descubre las tendencias de inversión inmobiliaria para 2026 y por qué ahora es el mejor momento para comprar propiedad en República Dominicana.",
         excerptEn: "Discover Real Estate investment trends 2026 and why now is the best time to buy property in the Dominican Republic for lifestyle and profit.",
-        image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp",
+        image: "/images/original/Farallon_Fase-1_larimar-city.webp",
         content: `<p>The real estate world is evolving quickly, and Real Estate investment trends 2026 point toward one clear winner: the Dominican Republic.Between its strong tourism sector, expanding infrastructure, and welcoming investment climate, the country is becoming one of the best places to buy property in the Dominican Republic, especially for those seeking lifestyle, stability, and growth.</p>
 <p>If you’re planning to buy property in the Dominican Republic, the coming years offer a window of opportunity to enter a market that’s still growing but increasingly recognized on the global stage.</p>
 

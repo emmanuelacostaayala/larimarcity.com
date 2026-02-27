@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Video, Users, ArrowRight, MapPin } from "lucide-react";
+import { useLocale } from "next-intl";
 
 const slots = [
     "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
@@ -13,6 +14,7 @@ const slots = [
 export default function AgendaPage() {
     const [step, setStep] = useState(1);
     const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+    const locale = useLocale();
 
     return (
         <div className="bg-[#0a101f] min-h-screen text-white pt-20">
@@ -25,9 +27,13 @@ export default function AgendaPage() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                         >
-                            <h1 className="font-playfair text-5xl md:text-6xl mb-6">Agenda una <span className="text-secondary italic">Visita</span></h1>
+                            <h1 className="font-playfair text-5xl md:text-6xl mb-6">
+                                {locale === 'en' ? 'Schedule a ' : 'Agenda una '}<span className="text-secondary italic">{locale === 'en' ? 'Visit' : 'Visita'}</span>
+                            </h1>
                             <p className="text-white/60 mb-12 leading-relaxed">
-                                Selecciona el horario que mejor te convenga para una sesión personalizada con uno de nuestros asesores expertos. Podemos realizar una videollamada o recibirte en nuestras oficinas.
+                                {locale === 'en'
+                                    ? 'Select the time that best suits you for a personalized session with one of our expert advisors. We can conduct a video call or welcome you at our offices.'
+                                    : 'Selecciona el horario que mejor te convenga para una sesión personalizada con uno de nuestros asesores expertos. Podemos realizar una videollamada o recibirte en nuestras oficinas.'}
                             </p>
 
                             <div className="space-y-8">
@@ -36,8 +42,8 @@ export default function AgendaPage() {
                                         <Video className="w-5 h-5 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-white mb-1">Reunión Virtual</h4>
-                                        <p className="text-white/40 text-sm">Zoom o Google Meet para inversores internacionales.</p>
+                                        <h4 className="font-bold text-white mb-1">{locale === 'en' ? 'Virtual Meeting' : 'Reunión Virtual'}</h4>
+                                        <p className="text-white/40 text-sm">{locale === 'en' ? 'Zoom or Google Meet for international investors.' : 'Zoom o Google Meet para inversores internacionales.'}</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -45,8 +51,8 @@ export default function AgendaPage() {
                                         <MapPin className="w-5 h-5 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-white mb-1">Visita al Farallón</h4>
-                                        <p className="text-white/40 text-sm">Recorrido físico por el terreno y visualización del Masterplan.</p>
+                                        <h4 className="font-bold text-white mb-1">{locale === 'en' ? 'Visit the Farallón' : 'Visita al Farallón'}</h4>
+                                        <p className="text-white/40 text-sm">{locale === 'en' ? 'Physical tour of the terrain and Masterplan visualization.' : 'Recorrido físico por el terreno y visualización del Masterplan.'}</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +64,7 @@ export default function AgendaPage() {
                         {step === 1 ? (
                             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                                 <h3 className="font-playfair text-3xl mb-8 flex items-center gap-3">
-                                    <Calendar className="text-secondary" /> Selecciona el Horario
+                                    <Calendar className="text-secondary" /> {locale === 'en' ? 'Select the Time' : 'Selecciona el Horario'}
                                 </h3>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
                                     {slots.map((slot) => (
@@ -84,11 +90,11 @@ export default function AgendaPage() {
                             </motion.div>
                         ) : (
                             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                <h3 className="font-playfair text-3xl mb-8">Confirma tus Datos</h3>
+                                <h3 className="font-playfair text-3xl mb-8">{locale === 'en' ? 'Confirm your Details' : 'Confirma tus Datos'}</h3>
                                 <form className="flex flex-col gap-6" onSubmit={(e) => { e.preventDefault(); setStep(3); }}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
-                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">Nombre Completo</label>
+                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">{locale === 'en' ? 'Full Name' : 'Nombre Completo'}</label>
                                             <input required type="text" className="w-full bg-transparent border-b border-white/20 focus:border-secondary py-2 text-white outline-none" />
                                         </div>
                                         <div>
@@ -98,25 +104,25 @@ export default function AgendaPage() {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
-                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">Teléfono *</label>
+                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">{locale === 'en' ? 'Phone *' : 'Teléfono *'}</label>
                                             <input required type="tel" className="w-full bg-transparent border-b border-white/20 focus:border-secondary py-2 text-white outline-none" />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">Modalidad Preferida</label>
+                                            <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">{locale === 'en' ? 'Preferred Modality' : 'Modalidad Preferida'}</label>
                                             <select className="w-full bg-[#121c30] border-b border-white/20 focus:border-secondary py-2 text-white outline-none uppercase tracking-widest text-[10px]">
-                                                <option>Virtual (Zoom / Meet)</option>
-                                                <option>Presencial (Punta Cana)</option>
-                                                <option>Presencial (Oficinas España)</option>
+                                                <option>{locale === 'en' ? 'Virtual (Zoom / Meet)' : 'Virtual (Zoom / Meet)'}</option>
+                                                <option>{locale === 'en' ? 'In-Person (Punta Cana)' : 'Presencial (Punta Cana)'}</option>
+                                                <option>{locale === 'en' ? 'In-Person (Spain Offices)' : 'Presencial (Oficinas España)'}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">Sesión para el día {selectedSlot}</label>
-                                        <textarea rows={3} placeholder="¿Alguna pregunta específica que quieras tratar?" className="w-full bg-transparent border-b border-white/20 focus:border-secondary py-2 text-white outline-none resize-none" />
+                                        <label className="block text-[10px] uppercase tracking-widest text-white/40 mb-2">{locale === 'en' ? `Session for day ${selectedSlot}` : `Sesión para el día ${selectedSlot}`}</label>
+                                        <textarea rows={3} placeholder={locale === 'en' ? "Any specific questions you'd like to discuss?" : "¿Alguna pregunta específica que quieras tratar?"} className="w-full bg-transparent border-b border-white/20 focus:border-secondary py-2 text-white outline-none resize-none" />
                                     </div>
                                     <div className="flex gap-4">
-                                        <button type="button" onClick={() => setStep(1)} className="px-8 py-4 border border-white/20 hover:border-white transition-colors text-xs uppercase tracking-widest font-bold">Volver</button>
-                                        <button type="submit" className="flex-1 py-4 bg-secondary text-[#0a101f] hover:bg-white transition-colors text-xs uppercase tracking-widest font-bold">Confirmar Cita</button>
+                                        <button type="button" onClick={() => setStep(1)} className="px-8 py-4 border border-white/20 hover:border-white transition-colors text-xs uppercase tracking-widest font-bold">{locale === 'en' ? 'Back' : 'Volver'}</button>
+                                        <button type="submit" className="flex-1 py-4 bg-secondary text-[#0a101f] hover:bg-white transition-colors text-xs uppercase tracking-widest font-bold">{locale === 'en' ? 'Confirm Appointment' : 'Confirmar Cita'}</button>
                                     </div>
                                 </form>
                             </motion.div>
@@ -127,9 +133,9 @@ export default function AgendaPage() {
                                 <div className="w-20 h-20 bg-secondary/10 text-secondary mx-auto rounded-full flex items-center justify-center mb-6">
                                     <Users className="w-10 h-10" />
                                 </div>
-                                <h3 className="font-playfair text-4xl mb-4">¡Cita Solicitada!</h3>
-                                <p className="text-white/60 mb-8">Recibirás un correo de confirmación y el link de la sesión en breve. ¡Nos vemos en {selectedSlot}!</p>
-                                <button onClick={() => setStep(1)} className="text-secondary uppercase tracking-[0.2em] text-xs font-bold hover:text-white transition-colors">Agendar otra</button>
+                                <h3 className="font-playfair text-4xl mb-4">{locale === 'en' ? 'Appointment Requested!' : '¡Cita Solicitada!'}</h3>
+                                <p className="text-white/60 mb-8">{locale === 'en' ? `You will receive a confirmation email and the session link shortly. See you on ${selectedSlot}!` : `Recibirás un correo de confirmación y el link de la sesión en breve. ¡Nos vemos en ${selectedSlot}!`}</p>
+                                <button onClick={() => setStep(1)} className="text-secondary uppercase tracking-[0.2em] text-xs font-bold hover:text-white transition-colors">{locale === 'en' ? 'Schedule another' : 'Agendar otra'}</button>
                             </motion.div>
                         )}
                     </div>

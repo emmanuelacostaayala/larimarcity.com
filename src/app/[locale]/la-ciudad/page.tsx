@@ -122,7 +122,7 @@ export default function LaCiudadPage() {
               className="relative h-[400px] lg:h-[700px] w-full mt-10 lg:mt-0"
             >
               <Image
-                src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+                src="/images/original/Farallon_Fase-1_larimar-city.webp"
                 alt="El Farallón de Larimar City"
                 fill
                 className="object-cover object-center lg:object-left rounded-sm"

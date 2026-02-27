@@ -27,7 +27,7 @@ export default function PorQueInvertirPage() {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/original/prime-towers-noche-larimar-city-1024x576.webp" // Noche / Premium feel
+            src="/images/original/prime-towers-noche-larimar-city.webp" // Noche / Premium feel
             alt="Por Qué Invertir en Punta Cana"
             fill
             className="object-cover object-bottom"

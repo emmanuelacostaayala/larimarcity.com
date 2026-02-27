@@ -13,7 +13,7 @@ export default function LoginPage() {
     <div className="bg-[#0a101f] min-h-screen text-white flex items-center justify-center relative overflow-hidden">
 
       {/* Background */}
-      <Image src="/images/original/prime-towers-noche-larimar-city-1024x576.webp" alt="Acceso Portal B2B" fill className="object-cover opacity-20" />
+      <Image src="/images/original/prime-towers-noche-larimar-city.webp" alt="Acceso Portal B2B" fill className="object-cover opacity-20" />
       <div className="absolute inset-0 bg-[#0a101f]/80 backdrop-blur-sm" />
 
       <div className="relative z-10 w-full max-w-md px-4">

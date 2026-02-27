@@ -48,7 +48,7 @@ export default function Hero() {
                 <motion.img
                     animate={{ scale: [1.0, 1.1] }}
                     transition={{ duration: 30, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-                    src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+                    src="/images/original/Farallon_Fase-1_larimar-city.webp"
                     alt="Larimar City Masterplan Ecosystem"
                     className="w-full h-full object-cover opacity-90"
                 />

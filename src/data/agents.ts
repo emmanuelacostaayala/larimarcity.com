@@ -47,7 +47,7 @@ export const agents: Agent[] = [
         slug: "leticia-decena",
         name: "Leticia Decena",
         role: "Directora Comercial",
-        image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp", // Using premium placeholder
+        image: "/images/original/Farallon_Fase-1_larimar-city.webp", // Using premium placeholder
         bio: "Leticia lidera el equipo comercial de Larimar City con una visión estratégica enfocada en la satisfacción total del cliente. Su enfoque consultivo y su habilidad para entender las necesidades únicas de cada familia la convierten en la guía ideal para quienes buscan no solo una inversión, sino un hogar en el Caribe.",
         languages: ["Español", "English"],
         specialties: ["Residencias Familiares", "Townhouses", "Postventa"],

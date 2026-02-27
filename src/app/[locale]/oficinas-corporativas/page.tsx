@@ -80,7 +80,7 @@ export default function OficinasCorporativas() {
       {/* Hero Section */}
       <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/images/original/prime-towers-noche-larimar-city-1024x576.webp"
+          src="/images/original/prime-towers-noche-larimar-city.webp"
           alt="Oficinas Corporativas Larimar City"
           fill
           className="object-cover opacity-40"

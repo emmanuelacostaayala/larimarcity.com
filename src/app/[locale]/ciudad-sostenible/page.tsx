@@ -27,7 +27,7 @@ export default function CiudadSosteniblePage() {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+            src="/images/original/sostenibilidad-larimarcity.webp"
             alt="Ciudad Sostenible Punta Cana"
             fill
             className="object-cover object-center"

@@ -27,7 +27,7 @@ export default function AmenidadesPage() {
                     className="absolute inset-0 z-0"
                 >
                     <Image
-                        src="/images/original/render-3d-de-villas-de-lujo-min-scaled.webp" // Beach Club Vibe
+                        src="/images/original/beach-club-general-fase-1-larimarcity-resort.webp" // Beach Club Vibe
                         alt="Amenidades Exclusivas Larimar City"
                         fill
                         className="object-cover object-bottom"
@@ -90,7 +90,7 @@ export default function AmenidadesPage() {
                             className="relative h-[600px] w-full"
                         >
                             <Image
-                                src="/images/original/Farallon_Fase-1_larimar-city-1536x864.webp"
+                                src="/images/original/Voulebart_1.jpg"
                                 alt="El Malecón de Larimar"
                                 fill
                                 className="object-cover object-left rounded-sm"
