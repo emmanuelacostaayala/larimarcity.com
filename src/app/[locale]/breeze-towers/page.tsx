@@ -87,7 +87,7 @@ export default function BreezeTowersPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/prime-tower-penthouse-terraza-2-scaled.webp" // Reusing high quality asset
+            src="/images/original/breeze-towers-main.webp"
             alt="Breeze Towers Concept"
             fill
             className="object-cover"

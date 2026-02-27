@@ -98,7 +98,7 @@ export default function GolfCountryClubPage() {
                     className="absolute inset-0 z-0"
                 >
                     <Image
-                        src="/images/original/amenities-golf.webp"
+                        src="/images/original/Apartamentos-Golf_12.webp"
                         alt="Larimar City Golf & Country Club"
                         fill
                         className="object-cover object-center"

@@ -421,7 +421,7 @@ export default function Home() {
               className="flex flex-col lg:flex-row-reverse items-center relative"
             >
               <div className="w-full lg:w-[65%] relative h-[500px] lg:h-[700px] rounded-sm overflow-hidden group shadow-2xl z-0">
-                <img src="/images/original/Horizon-View_8-ri5kqdv6155iqevpdpfjb5uhsw007w5cagi2byv77w.webp" alt="Horizon View" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3000ms] ease-out" />
+                <img src="/images/original/Horizon-View_8.webp" alt="Horizon View" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3000ms] ease-out" />
               </div>
               <div className="w-full lg:w-[45%] lg:-mr-32 mt-[-50px] lg:mt-0 relative z-10 bg-white p-10 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.1)] border border-slate-100 rounded-sm">
                 <div className="flex justify-between items-start mb-6">

@@ -87,7 +87,7 @@ export default function LiveTowersPage() {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-black/20 z-10" />
                     <Image
-                        src="/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+                        src="/images/original/vista-aerea-scaled.jpg"
                         alt="Live Towers Exterior"
                         fill
                         className="object-cover"

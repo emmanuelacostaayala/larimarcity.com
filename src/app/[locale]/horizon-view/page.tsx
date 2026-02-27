@@ -87,7 +87,7 @@ export default function HorizonViewPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/prime-towers-noche-larimar-city.webp"
+            src="/images/original/Horizon-View_8.webp"
             alt="Horizon View Exterior"
             fill
             className="object-cover"

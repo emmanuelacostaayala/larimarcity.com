@@ -87,7 +87,7 @@ export default function VillasGolfPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/render-3d-de-villas-de-lujo-min-scaled.webp"
+            src="/images/original/villas-golf-main.webp"
             alt="Villas Golf Exterior"
             fill
             className="object-cover"

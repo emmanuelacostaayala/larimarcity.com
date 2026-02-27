@@ -28,7 +28,7 @@ const content = {
         date: "22 de Marzo, 2026",
         location: "Online / Zoom",
         desc: "Análisis exclusivo con el Director Financiero de CLERHP sobre las proyecciones económicas del 2026.",
-        image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp",
+        image: "/images/original/villa-larimar-city-lujo.webp",
         featured: false
       },
       {
@@ -36,7 +36,7 @@ const content = {
         date: "5 de Abril, 2026",
         location: "Paseo de la Castellana, Madrid",
         desc: "Evento privado para inversores europeos presentando las primeras unidades de la torre Breeze.",
-        image: "/images/original/breeze-towers.webp",
+        image: "/images/original/breeze-towers-10-scaled.webp",
         featured: false
       }
     ]
@@ -63,7 +63,7 @@ const content = {
         date: "March 22, 2026",
         location: "Online / Zoom",
         desc: "Exclusive analysis with CLERHP's CFO on economic projections for 2026.",
-        image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp",
+        image: "/images/original/villa-larimar-city-lujo.webp",
         featured: false
       },
       {
@@ -71,7 +71,7 @@ const content = {
         date: "April 5, 2026",
         location: "Paseo de la Castellana, Madrid",
         desc: "Private event for European investors presenting the first units of the Breeze tower.",
-        image: "/images/original/breeze-towers.webp",
+        image: "/images/original/breeze-towers-10-scaled.webp",
         featured: false
       }
     ]

@@ -87,7 +87,7 @@ export default function TownhousesPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/villas-larimar-city-lujo.webp"
+            src="/images/original/townhouses-main.webp"
             alt="Townhouses Exterior"
             fill
             className="object-cover"

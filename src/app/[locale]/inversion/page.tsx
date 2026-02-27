@@ -82,7 +82,7 @@ export default function InversionHubPage() {
             {/* Hero Section */}
             <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
                 <Image
-                    src="/images/original/prime-towers-noche-larimar-city.webp"
+                    src="/images/original/prime-towers-exterior-12.webp"
                     alt="Inversión Larimar City"
                     fill
                     className="object-cover opacity-40"

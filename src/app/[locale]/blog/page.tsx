@@ -10,7 +10,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     <div className="bg-[#0a101f] min-h-screen text-white">
       {/* Header */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden flex flex-col justify-end">
-        <Image src="/images/original/vista-atardecer-apartamentos-punta-cana.webp" alt="Blog Larimar City" fill className="object-cover opacity-30" priority />
+        <Image src="/images/original/vista-aerea-scaled.jpg" alt="Blog Larimar City" fill className="object-cover opacity-30" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a101f] to-transparent" />
         <div className="container mx-auto px-4 max-w-7xl relative z-10">
           <div className="flex items-center gap-3 mb-4">

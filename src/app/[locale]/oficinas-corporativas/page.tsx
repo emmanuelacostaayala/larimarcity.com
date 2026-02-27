@@ -25,7 +25,7 @@ const offices = {
       zip: "Punta Cana 23000, RD",
       phone: "+1 809 000 0000",
       email: "caribe@clerhp.com",
-      image: "/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+      image: "/images/original/vista-aerea-scaled.jpg"
     },
     {
       country: "Bolivia",
@@ -35,7 +35,7 @@ const offices = {
       zip: "Santa Cruz de la Sierra, Bolivia",
       phone: "+591 3 000 0000",
       email: "bolivia@clerhp.com",
-      image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp"
+      image: "/images/original/villa-larimar-city-lujo.webp"
     }
   ],
   en: [
@@ -57,7 +57,7 @@ const offices = {
       zip: "Punta Cana 23000, DR",
       phone: "+1 809 000 0000",
       email: "caribe@clerhp.com",
-      image: "/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+      image: "/images/original/vista-aerea-scaled.jpg"
     },
     {
       country: "Bolivia",
@@ -67,7 +67,7 @@ const offices = {
       zip: "Santa Cruz de la Sierra, Bolivia",
       phone: "+591 3 000 0000",
       email: "bolivia@clerhp.com",
-      image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp"
+      image: "/images/original/villa-larimar-city-lujo.webp"
     }
   ]
 };
@@ -80,7 +80,7 @@ export default function OficinasCorporativas() {
       {/* Hero Section */}
       <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
-          src="/images/original/prime-towers-noche-larimar-city.webp"
+          src="/images/original/prime-towers-exterior-12.webp"
           alt="Oficinas Corporativas Larimar City"
           fill
           className="object-cover opacity-40"

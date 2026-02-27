@@ -27,14 +27,14 @@ const noticias = {
       category: "Obra",
       title: "Inicio de Cimentaciones de Prime Towers: Las Obras Avanzan Según Cronograma",
       excerpt: "El equipo de ingeniería de CLERHP inicia la fase de cimentación de las dos torres, marcando un hito en la construcción de Larimar City.",
-      image: "/images/original/prime-towers-noche-larimar-city.webp"
+      image: "/images/original/prime-towers-exterior-12.webp"
     },
     {
       date: "28 Ene 2026",
       category: "Turismo",
       title: "República Dominicana Bate su Récord de Turismo con 8.5 Millones de Visitantes",
       excerpt: "El Banco Central confirma el nuevo máximo histórico de llegadas turísticas al país, consolidando el impulso al mercado inmobiliario vacacional.",
-      image: "/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+      image: "/images/original/vista-aerea-scaled.jpg"
     }
   ],
   en: [
@@ -57,14 +57,14 @@ const noticias = {
       category: "Construction",
       title: "Start of Prime Towers Foundations: Works Progress on Schedule",
       excerpt: "The CLERHP engineering team begins the foundation phase of the two towers, marking a milestone in the construction of Larimar City.",
-      image: "/images/original/prime-towers-noche-larimar-city.webp"
+      image: "/images/original/prime-towers-exterior-12.webp"
     },
     {
       date: "Jan 28, 2026",
       category: "Tourism",
       title: "Dominican Republic Breaks Tourism Record with 8.5 Million Visitors",
       excerpt: "The Central Bank confirms the new all-time high of tourist arrivals to the country, consolidating the boost to the vacation real estate market.",
-      image: "/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+      image: "/images/original/vista-aerea-scaled.jpg"
     }
   ]
 };

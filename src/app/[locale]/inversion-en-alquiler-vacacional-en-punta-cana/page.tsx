@@ -132,7 +132,7 @@ export default function InversionVacacionalPage() {
               className="relative h-[600px] w-full"
             >
               <Image
-                src="/images/original/villa-larimar-city-vista.webp"
+                src="/images/original/villa-larimar-city-exterior.webp"
                 alt="Gestión Inmobiliaria"
                 fill
                 className="object-cover object-center border border-white/10"

@@ -11,13 +11,13 @@ const options = {
         {
             title: "Villas Golf",
             desc: "Residencias de ultra-lujo en primera línea de campo de golf. Privacidad absoluta y espacios abiertos integrados con la naturaleza.",
-            image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp",
+            image: "/images/original/villas-golf-main.webp",
             link: "/villas-golf"
         },
         {
             title: "Townhouses",
             desc: "El equilibrio perfecto entre modernidad y confort. Diseños contemporáneos pensados para la familia en el corazón de la ciudad.",
-            image: "/images/original/villas-larimar-city-lujo.webp",
+            image: "/images/original/townhouses-main.webp",
             link: "/townhouses"
         }
     ],
@@ -25,13 +25,13 @@ const options = {
         {
             title: "Golf Villas",
             desc: "Ultra-luxury residences on the front line of the golf course. Absolute privacy and open spaces integrated with nature.",
-            image: "/images/original/render-3d-de-villas-de-lujo-min-scaled.webp",
+            image: "/images/original/villas-golf-main.webp",
             link: "/villas-golf"
         },
         {
             title: "Townhouses",
             desc: "The perfect balance between modernity and comfort. Contemporary designs for the family in the heart of the city.",
-            image: "/images/original/villas-larimar-city-lujo.webp",
+            image: "/images/original/townhouses-main.webp",
             link: "/townhouses"
         }
     ]
@@ -44,7 +44,7 @@ export default function VillasHubPage() {
         <div className="bg-[#0a101f] min-h-screen text-white pt-20">
             {/* Hero */}
             <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-                <Image src="/images/original/amenities-golf.webp" alt="Villas & Townhouses" fill className="object-cover opacity-30" />
+                <Image src="/images/original/Apartamentos-Golf_12.webp" alt="Villas & Townhouses" fill className="object-cover opacity-30" />
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0a101f]/80 to-[#0a101f]" />
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-playfair text-6xl md:text-8xl mb-4 text-white">

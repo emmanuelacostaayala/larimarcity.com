@@ -87,7 +87,7 @@ export default function SunsetResidencesPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/apartamentos-en-punta-cana-larimar-city-vista-mar.webp"
+            src="/images/original/sunset-residences-main.webp"
             alt="Sunset Residences Exterior"
             fill
             className="object-cover"

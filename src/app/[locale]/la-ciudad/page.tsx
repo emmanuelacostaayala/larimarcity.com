@@ -166,19 +166,19 @@ export default function LaCiudadPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                img: "/images/original/amenities-malecon.webp",
+                img: "/images/original/Voulebart_1.jpg",
                 title: locale === 'en' ? "The Boardwalk" : "El Malecón",
                 icon: <Sun />,
                 desc: locale === 'en' ? "A promenade of more than 3km bordering the cliff. Perfect for sunsets and premium nightlife with restaurants and terraces." : "Un paseo marítimo de más de 3km bordeando el farallón. Perfecto para atardeceres y vida nocturna premium con restaurantes y terrazas."
               },
               {
-                img: "/images/original/amenities-golf.webp",
+                img: "/images/original/villa-larimar-city-golf.webp",
                 title: locale === 'en' ? "Sports & Wellness" : "Deporte y Bienestar",
                 icon: <Users />,
                 desc: locale === 'en' ? "Country club, 18-hole par 72 golf course, paddle tennis, tennis courts, and wellness center." : "Club de campo, campo de golf de 18 hoyos par 72, canchas de pádel, tenis y wellness center."
               },
               {
-                img: "/images/original/amenities-casino.webp",
+                img: "/images/original/beach-club-piscina-fase-1-larimarcity-resort.webp",
                 title: locale === 'en' ? "Exclusive Leisure" : "Ocio Exclusivo",
                 icon: <Coffee />,
                 desc: locale === 'en' ? "Casino, spectacular Beach Club with crystal-clear infinity pools simulating beaches, and family recreation areas." : "Casino, Beach Club espectacular con piscinas infinitas cristalinas simulando playas, y áreas de recreación familiar."

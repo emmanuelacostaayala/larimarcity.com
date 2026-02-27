@@ -27,7 +27,7 @@ export default function AmenidadesPage() {
                     className="absolute inset-0 z-0"
                 >
                     <Image
-                        src="/images/original/beach-club-general-fase-1-larimarcity-resort.webp" // Beach Club Vibe
+                        src="/images/original/beach-club-main.webp" // Beach Club Vibe
                         alt="Amenidades Exclusivas Larimar City"
                         fill
                         className="object-cover object-bottom"
@@ -171,7 +171,7 @@ export default function AmenidadesPage() {
                             className="relative h-full group overflow-hidden border border-white/5"
                         >
                             <Image
-                                src="/images/original/vista-atardecer-apartamentos-punta-cana.webp" // Beach pool vibe
+                                src="/images/original/beach-club-main.webp" // Beach pool vibe
                                 alt="Beach Club Larimar City"
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -197,7 +197,7 @@ export default function AmenidadesPage() {
                                 className="relative h-full group overflow-hidden border border-white/5"
                             >
                                 <Image
-                                    src="/images/original/amenities-golf.webp" // Replace with actual wellness/sports if available
+                                    src="/images/original/Apartamentos-Golf_12.webp" // Replace with actual wellness/sports if available
                                     alt="Wellness & Fitness"
                                     fill
                                     className="object-cover group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0"
@@ -221,7 +221,7 @@ export default function AmenidadesPage() {
                                 className="relative h-full group overflow-hidden border border-white/5"
                             >
                                 <Image
-                                    src="/images/original/amenities-malecon.webp"
+                                    src="/images/original/Voulebart_1.jpg"
                                     alt="Club Privado"
                                     fill
                                     className="object-cover group-hover:scale-105 transition-transform duration-700 blur-[2px] group-hover:blur-none"

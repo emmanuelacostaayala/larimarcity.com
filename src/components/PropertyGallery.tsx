@@ -9,7 +9,7 @@ const images = [
     { src: "/images/original/prime-towers-exterior-12.webp", alt: "Prime Towers Exterior Arch View" },
     { src: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp", alt: "Prime Towers Penthouse Terrace" },
     { src: "/images/original/Salon_Atardecer-prime-towers-scaled.jpg", alt: "Prime Towers Living Room Sunset" },
-    { src: "/images/original/prime-towers-noche-larimar-city.webp", alt: "Prime Towers Night View" },
+    { src: "/images/original/prime-towers-exterior-12.webp", alt: "Prime Towers Night View" },
     { src: "/images/original/SR_Int_11-scaled.webp", alt: "Prime Towers Premium Interior" }
 ];
 

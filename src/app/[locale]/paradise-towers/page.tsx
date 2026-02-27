@@ -87,7 +87,7 @@ export default function ParadiseTowersPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent z-10" />
           <Image
-            src="/images/original/apartamentos-lujo-punta-cana-larimar.webp"
+            src="/images/original/paradise-towers-main.webp"
             alt="Paradise Towers Exterior"
             fill
             className="object-cover"

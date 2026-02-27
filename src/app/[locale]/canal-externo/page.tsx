@@ -26,7 +26,7 @@ export default function CanalExternoPage() {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-primary/80 z-10" />
                     <Image
-                        src="/images/original/fachada-principal-3.webp"
+                        src="/images/original/Brezze-Towers_1.webp"
                         alt="Business Center"
                         fill
                         className="object-cover opacity-50"

@@ -162,7 +162,7 @@ export default function CiudadSosteniblePage() {
               className="relative h-[600px] w-full order-1 lg:order-2"
             >
               <Image
-                src="/images/original/vista-atardecer-apartamentos-punta-cana.webp"
+                src="/images/original/vista-aerea-scaled.jpg"
                 alt="Vista Atardecer Larimar City"
                 fill
                 className="object-cover object-center rounded-sm"

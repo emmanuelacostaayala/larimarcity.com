@@ -68,7 +68,7 @@ export const agents: Agent[] = [
         slug: "carlos-mendoza",
         name: "Carlos Mendoza",
         role: "Expert en Campos de Golf",
-        image: "/images/original/MASTERPLAN_PLAYA_1024x576.webp", // Using premium placeholder
+        image: "/images/original/LARIMAR_MASTERPLAN_Foto.webp", // Using premium placeholder
         bio: "Apasionado por el golf y el estilo de vida premium, Carlos es nuestro especialista en las propiedades colindantes a los campos de golf de Larimar City. Su asesoramiento combina la perspectiva deportiva con el análisis de rentabilidad, ofreciendo opciones incomparables para los amantes de este deporte.",
         languages: ["Español", "English", "Français"],
         specialties: ["Golf Residences", "Country Club Lifestyle", "Inversión Temática"],

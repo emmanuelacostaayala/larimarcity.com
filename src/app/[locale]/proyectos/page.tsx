@@ -19,7 +19,7 @@ const projects = {
       category: "Apartamentos Premium",
       desc: "El corazón cosmopolita de Fase I. Comodidad urbana con impresionantes vistas al farallón y cercanía a todas las amenidades.",
       href: "/prime-towers",
-      image: "/images/original/prime-towers-exterior-vertical-6-1-ri51o3x87poy3nqgr25gucb05akgbfoglpfsf4ey4s.webp",
+      image: "/images/original/prime-towers-main.webp",
       icon: <Building2 className="w-5 h-5" />,
     },
     {
@@ -28,7 +28,7 @@ const projects = {
       category: "Torres Residenciales",
       desc: "Vistas infinitas al océano Atlántico desde la cota más alta del acantilado. Lujo vertical redefinido.",
       href: "/horizon-view",
-      image: "/images/original/Horizon-View_8-ri5kqdv6155iqevpdpfjb5uhsw007w5cagi2byv77w.webp",
+      image: "/images/original/horizon-view-main.webp",
       icon: <Waves className="w-5 h-5" />,
     },
     {
@@ -37,7 +37,7 @@ const projects = {
       category: "Villas de Lujo",
       desc: "Privacidad absoluta frente al campo de golf de 18 hoyos. Espacios abiertos, jardines privados y piscinas exclusivas.",
       href: "/villas",
-      image: "/images/original/villa-larimar-city-golf.webp",
+      image: "/images/original/villas-golf-main.webp",
       icon: <Trees className="w-5 h-5" />,
     },
     {
@@ -46,7 +46,7 @@ const projects = {
       category: "Residencias Familiares",
       desc: "El equilibrio perfecto entre la comodidad de un apartamento y el espacio de una villa. Ideal para familias e inversión.",
       href: "/townhouses",
-      image: "/images/original/TownHauses_4-1-ri4w1xsw9ixqyzeca6571uwwit1dr22tt235hm6afg.webp",
+      image: "/images/original/townhouses-main.webp",
       icon: <Home className="w-5 h-5" />,
     }
   ],
@@ -57,7 +57,7 @@ const projects = {
       category: "Premium Apartments",
       desc: "The cosmopolitan heart of Phase I. Urban comfort with stunning views of the cliff and proximity to all amenities.",
       href: "/prime-towers",
-      image: "/images/original/prime-towers-exterior-vertical-6-1-ri51o3x87poy3nqgr25gucb05akgbfoglpfsf4ey4s.webp",
+      image: "/images/original/prime-towers-main.webp",
       icon: <Building2 className="w-5 h-5" />,
     },
     {
@@ -66,7 +66,7 @@ const projects = {
       category: "Residential Towers",
       desc: "Endless views of the Atlantic Ocean from the highest point of the cliff. Vertical luxury redefined.",
       href: "/horizon-view",
-      image: "/images/original/Horizon-View_8-ri5kqdv6155iqevpdpfjb5uhsw007w5cagi2byv77w.webp",
+      image: "/images/original/horizon-view-main.webp",
       icon: <Waves className="w-5 h-5" />,
     },
     {
@@ -75,7 +75,7 @@ const projects = {
       category: "Luxury Villas",
       desc: "Absolute privacy facing the 18-hole golf course. Open spaces, private gardens, and exclusive pools.",
       href: "/villas",
-      image: "/images/original/villa-larimar-city-golf.webp",
+      image: "/images/original/villas-golf-main.webp",
       icon: <Trees className="w-5 h-5" />,
     },
     {
@@ -84,7 +84,7 @@ const projects = {
       category: "Family Residences",
       desc: "The perfect balance between apartment comfort and villa space. Ideal for families and investment.",
       href: "/townhouses",
-      image: "/images/original/TownHauses_4-1-ri4w1xsw9ixqyzeca6571uwwit1dr22tt235hm6afg.webp",
+      image: "/images/original/townhouses-main.webp",
       icon: <Home className="w-5 h-5" />,
     }
   ]

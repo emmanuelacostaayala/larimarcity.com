@@ -180,7 +180,7 @@ export default function FaseIMasterplanPage() {
       {/* Projects Integration */}
       <section className="py-24 bg-primary text-white px-6 lg:px-12 overflow-hidden relative">
         <div className="absolute right-0 top-0 w-1/3 h-full opacity-10 pointer-events-none">
-          <Image src="/images/original/prime-towers-noche-larimar-city.webp" alt="Background deco" fill className="object-cover" />
+          <Image src="/images/original/prime-towers-main.webp" alt="Background deco" fill className="object-cover" />
         </div>
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
