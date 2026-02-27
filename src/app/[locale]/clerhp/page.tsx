@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Globe2, ShieldCheck, TrendingUp } from "lucide-react";
 import StockWidget from "@/components/StockWidget";

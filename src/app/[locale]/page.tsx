@@ -2,7 +2,7 @@
 
 import Hero from "@/components/Hero";
 import { ArrowRight, MapPin, Building2, Droplets, Users, Calendar } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useLocale } from "next-intl";
 

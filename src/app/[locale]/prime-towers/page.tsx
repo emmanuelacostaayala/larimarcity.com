@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Download, Check, FileText, LayoutGrid, Calendar, ChevronRight, ArrowRight } from "lucide-react";
 import PropertyGallery from "@/components/PropertyGallery";
 import TypologySelector from "@/components/TypologySelector";

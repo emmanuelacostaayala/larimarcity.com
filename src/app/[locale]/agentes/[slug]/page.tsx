@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { getAgentBySlug, agents } from "@/data/agents";
 import { Mail, Phone, MapPin, Globe, Linkedin, ArrowLeft } from "lucide-react";
 

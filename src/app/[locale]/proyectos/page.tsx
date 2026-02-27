@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from "@/i18n/routing";
 import { ArrowRight, Building2, Trees, Waves, Home } from 'lucide-react';
 import Footer from '@/components/Footer';
 import { useLocale } from 'next-intl';

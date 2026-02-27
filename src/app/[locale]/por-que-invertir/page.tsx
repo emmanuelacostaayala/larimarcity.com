@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TrendingUp, ShieldCheck, Map, ArrowRight, DollarSign, Umbrella, Plane } from "lucide-react";
 import { useRef } from "react";

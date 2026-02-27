@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Check, ArrowRight, Building, Waves, TreePine, Map, Download } from "lucide-react";
 import MasterPlanMap from "@/components/MasterPlanMap";
 import { useLocale } from "next-intl";

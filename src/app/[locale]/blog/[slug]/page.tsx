@@ -1,6 +1,6 @@
 import { posts } from "@/data/posts";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Calendar, User, ChevronLeft, Share2, Bookmark } from "lucide-react";
 import { Metadata } from "next";

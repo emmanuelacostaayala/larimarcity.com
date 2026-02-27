@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { HandHeart, PaintBucket, Layers, Key, CheckCircle, Headphones, Building2, ArrowRight } from "lucide-react";
 import { useLocale } from "next-intl";
 
