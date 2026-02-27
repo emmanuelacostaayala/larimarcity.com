@@ -86,8 +86,8 @@ export default function Footer() {
                             <li className="flex gap-4">
                                 <MapPin className="w-5 h-5 text-secondary shrink-0" />
                                 <div className="text-sm">
-                                    <p className="font-bold mb-1">Punta Cana, RD</p>
-                                    <p className="text-white/50">Edf Aqua, Av. 1ero de Noviembre, Punta Cana 23000</p>
+                                    <p className="font-bold mb-1">{t('ubicacionTitulo')}</p>
+                                    <p className="text-white/50">{t('ubicacionDesc')}</p>
                                 </div>
                             </li>
                             <li className="flex gap-4">
@@ -100,8 +100,8 @@ export default function Footer() {
                             <li className="flex gap-4">
                                 <Mail className="w-5 h-5 text-secondary shrink-0" />
                                 <div className="text-sm">
-                                    <p className="font-bold mb-1">Email</p>
-                                    <p className="text-white/50">info@larimarcity.com</p>
+                                    <p className="font-bold mb-1">{t('emailTitulo')}</p>
+                                    <p className="text-white/50">{t('emailDesc')}</p>
                                 </div>
                             </li>
                         </ul>

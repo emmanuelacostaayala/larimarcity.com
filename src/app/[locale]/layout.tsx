@@ -6,14 +6,18 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
-export const metadata: Metadata = {
-  title: "Larimar City & Resort | Punta Cana",
-  description: "La primera Smart City en República Dominicana. Un estilo de vida superior con 22,000 propiedades de lujo en Punta Cana.",
-};
-
+import { getTranslations, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'Layout' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 import { routing } from '@/i18n/routing';
 
 export default async function RootLayout({

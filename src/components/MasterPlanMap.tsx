@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Native image dimensions for precise mapping
 const NATIVE_WIDTH = 1447;
@@ -39,7 +40,13 @@ const hotspots = [
 ];
 
 export default function MasterPlanMap() {
+    const t = useTranslations('MasterPlanMap');
     const [activeId, setActiveId] = useState<number | null>(null);
+
+    const translatedHotspots = hotspots.map(spot => ({
+        ...spot,
+        title: t(spot.title.toLowerCase().replace(/ /g, '_'))
+    }));
 
     return (
         <div className="w-full bg-[#f8f9fa] rounded-sm border border-black/5 shadow-xl overflow-hidden relative group">
@@ -59,7 +66,7 @@ export default function MasterPlanMap() {
 
                 {/* Hotspots layer pinned to exact aspect ratio box */}
                 <div className="absolute inset-0 z-10 pointer-events-none">
-                    {hotspots.map((spot) => (
+                    {translatedHotspots.map((spot) => (
                         <div
                             key={spot.id}
                             id={`hotspot-${spot.id}`}
@@ -104,8 +111,8 @@ export default function MasterPlanMap() {
 
             {/* Map Hint */}
             <div className="absolute bottom-6 left-6 p-3 bg-white/90 backdrop-blur-sm border border-black/10 text-black rounded shadow-lg pointer-events-none z-20">
-                <p className="text-[10px] uppercase tracking-widest font-bold opacity-70 mb-1">Plan Maestro</p>
-                <p className="text-xs font-semibold">Explora las fases y usos de Larimar City</p>
+                <p className="text-[10px] uppercase tracking-widest font-bold opacity-70 mb-1">{t('planMaestro')}</p>
+                <p className="text-xs font-semibold">{t('explora')}</p>
             </div>
         </div>
     );

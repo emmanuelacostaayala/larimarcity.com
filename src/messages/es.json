@@ -39,6 +39,10 @@
         "corporativoTitulo": "Corporativo",
         "contactoTitulo": "Contacto",
         "llamanos": "Llámanos",
+        "emailTitulo": "Correo Electrónico",
+        "emailDesc": "info@larimarcity.com",
+        "ubicacionTitulo": "Punta Cana, RD",
+        "ubicacionDesc": "Edf Aqua, Av. 1ero de Noviembre, Punta Cana 23000",
         "avisoLegal": "Aviso Legal",
         "privacidad": "Política de Privacidad",
         "cookies": "Cookies",
@@ -47,5 +51,20 @@
     "LocaleSwitcher": {
         "es": "Español (ES)",
         "en": "English (EN)"
+    },
+    "Layout": {
+        "title": "Larimar City & Resort | Punta Cana",
+        "description": "La primera Smart City en República Dominicana. Un estilo de vida superior con 22,000 propiedades de lujo en Punta Cana."
+    },
+    "MasterPlanMap": {
+        "hotel": "HOTEL",
+        "residencial": "RESIDENCIAL",
+        "campo_de_golf": "CAMPO DE GOLF",
+        "servicios": "SERVICIOS",
+        "comercial": "COMERCIAL",
+        "boulevard": "BOULEVARD",
+        "malec\u00f3n": "MALECÓN",
+        "planMaestro": "Plan Maestro",
+        "explora": "Explora las fases y usos de Larimar City"
     }
 }
