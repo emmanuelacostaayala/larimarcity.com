@@ -1,10 +1,12 @@
-import Link from "next/image";
-import NextLink from "next/link";
+import { Link as NextLink } from "@/i18n/routing";
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const t = useTranslations('Footer');
+    const tNav = useTranslations('Navbar');
 
     return (
         <footer className="bg-[#050a15] text-white border-t border-white/5 py-20">
@@ -23,7 +25,7 @@ export default function Footer() {
                             />
                         </NextLink>
                         <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-                            La primera Smart City del Caribe. Un proyecto disruptivo que integra sostenibilidad, tecnología y lujo en la cota más alta de Punta Cana.
+                            {t('descubre')}
                         </p>
                         <div className="flex gap-4">
                             {[Facebook, Instagram, Linkedin, Twitter].map((Icon, i) => (
@@ -36,15 +38,15 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div className="space-y-8">
-                        <h4 className="font-playfair text-xl font-bold">Navegación</h4>
+                        <h4 className="font-playfair text-xl font-bold">{t('navegacion')}</h4>
                         <ul className="space-y-4">
                             {[
-                                { name: "Proyectos", href: "/proyectos" },
-                                { name: "Fase I", href: "/fase-i-larimar-city-resort" },
-                                { name: "Inversión", href: "/inversion" },
-                                { name: "Amenities", href: "/amenidades" },
-                                { name: "Agentes", href: "/agentes" },
-                                { name: "Blog", href: "/blog" }
+                                { name: tNav('proyectos'), href: "/proyectos" },
+                                { name: tNav('faseIMasterplan'), href: "/fase-i-larimar-city-resort" },
+                                { name: tNav('inversion'), href: "/inversion" },
+                                { name: tNav('amenidades'), href: "/amenidades" },
+                                { name: tNav('nuestroEquipo'), href: "/agentes" },
+                                { name: tNav('blog'), href: "/blog" }
                             ].map((link, i) => (
                                 <li key={i}>
                                     <NextLink href={link.href} className="text-white/50 hover:text-secondary text-sm transition-colors flex items-center gap-2 group">
@@ -58,14 +60,14 @@ export default function Footer() {
 
                     {/* Corporate */}
                     <div className="space-y-8">
-                        <h4 className="font-playfair text-xl font-bold">Corporativo</h4>
+                        <h4 className="font-playfair text-xl font-bold">{t('corporativoTitulo')}</h4>
                         <ul className="space-y-4">
                             {[
-                                { name: "Grupo CLERHP", href: "/clerhp" },
-                                { name: "Oficinas", href: "/oficinas-corporativas" },
-                                { name: "Canal Externo", href: "/canal-externo" },
-                                { name: "Servicio Postventa", href: "/servicio-postventa" },
-                                { name: "Contacto", href: "/contacto" }
+                                { name: tNav('grupoClerhp'), href: "/clerhp" },
+                                { name: tNav('oficinasCorporativas'), href: "/oficinas-corporativas" },
+                                { name: tNav('canalExterno'), href: "/canal-externo" },
+                                { name: tNav('servicioPostventa'), href: "/servicio-postventa" },
+                                { name: tNav('contacto'), href: "/contacto" }
                             ].map((link, i) => (
                                 <li key={i}>
                                     <NextLink href={link.href} className="text-white/50 hover:text-secondary text-sm transition-colors flex items-center gap-2 group">
@@ -79,7 +81,7 @@ export default function Footer() {
 
                     {/* Contact Info */}
                     <div className="space-y-8">
-                        <h4 className="font-playfair text-xl font-bold">Contacto</h4>
+                        <h4 className="font-playfair text-xl font-bold">{t('contactoTitulo')}</h4>
                         <ul className="space-y-6">
                             <li className="flex gap-4">
                                 <MapPin className="w-5 h-5 text-secondary shrink-0" />
@@ -91,7 +93,7 @@ export default function Footer() {
                             <li className="flex gap-4">
                                 <Phone className="w-5 h-5 text-secondary shrink-0" />
                                 <div className="text-sm">
-                                    <p className="font-bold mb-1">Llámanos</p>
+                                    <p className="font-bold mb-1">{t('llamanos')}</p>
                                     <p className="text-white/50">+1 (809) 630-1698</p>
                                 </div>
                             </li>
@@ -109,13 +111,13 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-white/30 text-xs">
-                        © {currentYear} Larimar City & Resort. Todos los derechos reservados. Un proyecto de Grupo CLERHP.
+                    <p className="text-white/30 text-xs text-center md:text-left">
+                        {t('derechos', { year: currentYear })}
                     </p>
                     <div className="flex gap-8 text-white/30 text-xs">
-                        <NextLink href="#" className="hover:text-white transition-colors">Aviso Legal</NextLink>
-                        <NextLink href="#" className="hover:text-white transition-colors">Política de Privacidad</NextLink>
-                        <NextLink href="#" className="hover:text-white transition-colors">Cookies</NextLink>
+                        <NextLink href="#" className="hover:text-white transition-colors">{t('avisoLegal')}</NextLink>
+                        <NextLink href="#" className="hover:text-white transition-colors">{t('privacidad')}</NextLink>
+                        <NextLink href="#" className="hover:text-white transition-colors">{t('cookies')}</NextLink>
                     </div>
                 </div>
             </div>

@@ -1,11 +1,15 @@
 export interface BlogPost {
     slug: string;
     title: string;
+    titleEn?: string;
     category: string;
+    categoryEn?: string;
     date: string;
     excerpt: string;
+    excerptEn?: string;
     image: string;
     content: string;
+    contentEn?: string;
     author?: {
         name: string;
         role: string;
@@ -16,10 +20,13 @@ export interface BlogPost {
 export const posts: BlogPost[] = [
     {
         slug: "real-estate-investment-trends-2026-why-its-the-best-time-to-buy-property-in-the-dominican-republic",
-        title: "Real Estate Investment Trends 2026: The Dominican Republic",
+        title: "Tendencias de Inversión Inmobiliaria 2026: República Dominicana",
+        titleEn: "Real Estate Investment Trends 2026: The Dominican Republic",
         category: "Inversión",
+        categoryEn: "Investment",
         date: "26 Febrero 2026",
-        excerpt: "Discover Real Estate investment trends 2026 and why now is the best time to buy property in the Dominican Republic for lifestyle and profit.",
+        excerpt: "Descubre las tendencias de inversión inmobiliaria para 2026 y por qué ahora es el mejor momento para comprar propiedad en República Dominicana.",
+        excerptEn: "Discover Real Estate investment trends 2026 and why now is the best time to buy property in the Dominican Republic for lifestyle and profit.",
         image: "/images/original/Farallon_Fase-1_larimar-city-1536x864.webp",
         content: `<p>The real estate world is evolving quickly, and Real Estate investment trends 2026 point toward one clear winner: the Dominican Republic.Between its strong tourism sector, expanding infrastructure, and welcoming investment climate, the country is becoming one of the best places to buy property in the Dominican Republic, especially for those seeking lifestyle, stability, and growth.</p>
 <p>If you’re planning to buy property in the Dominican Republic, the coming years offer a window of opportunity to enter a market that’s still growing but increasingly recognized on the global stage.</p>
@@ -66,9 +73,12 @@ export const posts: BlogPost[] = [
     {
         slug: "que-propiedades-en-venta-en-punta-cana-elegir-segun-tu-estilo-de-vida",
         title: "¿Qué propiedades elegir en Punta Cana para vivir?",
+        titleEn: "Which properties to choose in Punta Cana to live?",
         category: "Estilo de Vida",
+        categoryEn: "Lifestyle",
         date: "20 Febrero 2026",
         excerpt: "Elegir un nuevo hogar o una segunda residencia en el Caribe no es solo una cuestión de ubicación, sino también de estilo de vida. Punta Cana ofrece una gran variedad de opciones.",
+        excerptEn: "Choosing a new home or a second residence in the Caribbean is not just a matter of location, but also lifestyle. Punta Cana offers a wide variety of options.",
         image: "/images/original/prime-tower-penthouse-terraza-2-scaled.webp",
         content: `<p>Elegir un nuevo hogar o una segunda residencia en el Caribe no es solo una cuestión de ubicación, sino también de estilo de vida. Punta Cana ofrece una gran variedad de opciones residenciales, y en Larimar nos encargamos de realizar la venta de apartamentos en Punta Cana, así como de villas exclusivas o comunidades tranquilas ideales para quienes buscan pasar su retiro en un entorno seguro y con calidad de vida.</p>
 <p>En este artículo exploraremos diferentes proyectos inmobiliarios en Punta Cana y qué propiedades en venta en Punta Cana se adaptan mejor a diferentes necesidades, ya sea que quieras vivir jubilado en Punta Cana, disfrutar la playa todo el año o invertir en un apartamento frente al mar.</p>
@@ -107,9 +117,12 @@ export const posts: BlogPost[] = [
     {
         slug: "invertir-en-inmuebles-del-extranjero-oportunidades-y-rentabilidad-en-el-caribe",
         title: "Invertir en el Caribe 2026 : Oportunidades y Rentabilidad",
+        titleEn: "Invest in the Caribbean 2026: Opportunities and Profitability",
         category: "Mercado",
+        categoryEn: "Market",
         date: "14 Febrero 2026",
         excerpt: "Cada vez más inversores miran hacia el Caribe como un destino estratégico para invertir en inmuebles y diversificar su portfolio fuera de su país.",
+        excerptEn: "More and more investors are looking to the Caribbean as a strategic destination to invest in real estate and diversify their portfolio outside their country.",
         image: "/images/original/villa-larimar-city-lujo.webp",
         content: `<p>Cada vez más inversores miran hacia el Caribe como un destino estratégico para invertir en inmuebles y diversificar su portfolio fuera de su país. En 2025, la región vive un momento excepcional: estabilidad económica, alto flujo turístico y proyectos inmobiliarios en Punta Cana como Larimar City &amp; Resort que están transformando el panorama de la inversión inmobiliaria en el extranjero.</p>
 <p>Más allá del atractivo natural, el Caribe se ha convertido en un entorno financiero sólido, donde la rentabilidad en bienes raíces se combina con calidad de vida, oportunidades empresariales y un mercado en crecimiento constante.</p>

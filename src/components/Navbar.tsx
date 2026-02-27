@@ -1,78 +1,104 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 
-const navLinks = [
-    { name: "INICIO", href: "/" },
-    {
-        name: "LARIMAR CITY",
-        href: "/la-ciudad",
-        dropdown: [
-            { name: "Visión", href: "/la-ciudad" },
-            { name: "Ciudad Sostenible", href: "/ciudad-sostenible" },
-            { name: "Amenidades", href: "/amenidades" },
-            { name: "Golf & Country", href: "/golf-y-country-club" }
-        ]
-    },
-    {
-        name: "PROYECTOS",
-        href: "/proyectos",
-        dropdown: [
-            { name: "Fase I - Masterplan", href: "/fase-i-larimar-city-resort" },
-            { name: "Live Towers", href: "/live-towers" },
-            { name: "Horizon View", href: "/horizon-view" },
-            { name: "Prime Towers", href: "/prime-towers" },
-            { name: "Breeze Towers", href: "/breeze-towers" },
-            { name: "Villas & Townhouses", href: "/villas" }
-        ]
-    },
-    {
-        name: "INVERSIÓN",
-        href: "/inversion",
-        dropdown: [
-            { name: "Inversión Segura", href: "/por-que-invertir" },
-            { name: "Invertir como Extranjero", href: "/comprar-propiedad-en-punta-cana" },
-            { name: "Renta Vacacional", href: "/inversion-en-alquiler-vacacional-en-punta-cana" }
-        ]
-    },
-    {
-        name: "ACTUALIDAD",
-        href: "/noticias",
-        dropdown: [
-            { name: "Noticias", href: "/noticias" },
-            { name: "Blog", href: "/blog" },
-            { name: "Eventos", href: "/eventos" }
-        ]
-    },
-    {
-        name: "CONTACTO",
-        href: "/contacto",
-        dropdown: [
-            { name: "Contáctanos", href: "/contacto" },
-            { name: "Agenda una Visita", href: "/agenda" },
-            { name: "Servicio Postventa", href: "/servicio-postventa" },
-            { name: "Canal Externo (B2B)", href: "/canal-externo" }
-        ]
-    },
-    {
-        name: "CORPORATIVO",
-        href: "/clerhp",
-        dropdown: [
-            { name: "Grupo Clerhp (BME: CLR)", href: "/clerhp" },
-            { name: "Oficinas Corporativas", href: "/oficinas-corporativas" },
-            { name: "Nuestro Equipo", href: "/agentes" }
-        ]
-    }
-];
+function LanguageSwitcher() {
+    const t = useTranslations('LocaleSwitcher');
+    const router = useRouter();
+    const pathname = usePathname();
+    const locale = useLocale();
+
+    const switchLocale = (newLocale: string) => {
+        router.replace(pathname, { locale: newLocale });
+    };
+
+    return (
+        <div className="relative group flex items-center">
+            <button className="flex items-center text-[13px] 2xl:text-sm font-medium tracking-wide transition-colors py-2 text-white hover:text-accent border border-white/20 rounded-full px-4 ml-4">
+                <Globe className="w-4 h-4 mr-2" /> {locale.toUpperCase()} <ChevronDown className="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" />
+            </button>
+            <div className="absolute right-0 top-full pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                <div className="bg-white rounded-md shadow-xl border border-slate-100 py-2 w-40 flex flex-col overflow-hidden">
+                    <button onClick={() => switchLocale('es')} className={`px-4 py-2 text-sm text-left transition-colors ${locale === 'es' ? 'bg-slate-50 text-secondary font-semibold' : 'text-primary hover:bg-slate-50 hover:text-secondary'}`}>{t('es')}</button>
+                    <button onClick={() => switchLocale('en')} className={`px-4 py-2 text-sm text-left transition-colors ${locale === 'en' ? 'bg-slate-50 text-secondary font-semibold' : 'text-primary hover:bg-slate-50 hover:text-secondary'}`}>{t('en')}</button>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export default function Navbar() {
+    const t = useTranslations('Navbar');
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [openSubmenuIndex, setOpenSubmenuIndex] = useState<number | null>(null);
     const pathname = usePathname();
+
+    const navLinks = [
+        { name: t('inicio'), href: "/" },
+        {
+            name: t('larimarCity'),
+            href: "/la-ciudad",
+            dropdown: [
+                { name: t('vision'), href: "/la-ciudad" },
+                { name: t('ciudadSostenible'), href: "/ciudad-sostenible" },
+                { name: t('amenidades'), href: "/amenidades" },
+                { name: t('golfAndCountry'), href: "/golf-y-country-club" }
+            ]
+        },
+        {
+            name: t('proyectos'),
+            href: "/proyectos",
+            dropdown: [
+                { name: t('faseIMasterplan'), href: "/fase-i-larimar-city-resort" },
+                { name: t('liveTowers'), href: "/live-towers" },
+                { name: t('horizonView'), href: "/horizon-view" },
+                { name: t('primeTowers'), href: "/prime-towers" },
+                { name: t('breezeTowers'), href: "/breeze-towers" },
+                { name: t('villasAndTownhouses'), href: "/villas" }
+            ]
+        },
+        {
+            name: t('inversion'),
+            href: "/inversion",
+            dropdown: [
+                { name: t('inversionSegura'), href: "/por-que-invertir" },
+                { name: t('invertirComoExtranjero'), href: "/comprar-propiedad-en-punta-cana" },
+                { name: t('rentaVacacional'), href: "/inversion-en-alquiler-vacacional-en-punta-cana" }
+            ]
+        },
+        {
+            name: t('actualidad'),
+            href: "/noticias",
+            dropdown: [
+                { name: t('noticias'), href: "/noticias" },
+                { name: t('blog'), href: "/blog" },
+                { name: t('eventos'), href: "/eventos" }
+            ]
+        },
+        {
+            name: t('contacto'),
+            href: "/contacto",
+            dropdown: [
+                { name: t('contactanos'), href: "/contacto" },
+                { name: t('agendaUnaVisita'), href: "/agenda" },
+                { name: t('servicioPostventa'), href: "/servicio-postventa" },
+                { name: t('canalExterno'), href: "/canal-externo" }
+            ]
+        },
+        {
+            name: t('corporativo'),
+            href: "/clerhp",
+            dropdown: [
+                { name: t('grupoClerhp'), href: "/clerhp" },
+                { name: t('oficinasCorporativas'), href: "/oficinas-corporativas" },
+                { name: t('nuestroEquipo'), href: "/agentes" }
+            ]
+        }
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -145,18 +171,20 @@ export default function Navbar() {
                         href="/contacto"
                         className="px-5 py-2.5 text-sm font-medium border border-white/50 text-white rounded-sm hover:bg-white hover:text-primary transition-colors"
                     >
-                        Visítanos
+                        {t('visitanos')}
                     </Link>
                     <Link
                         href="/canal-externo"
                         className="px-5 py-2.5 text-sm font-medium bg-secondary text-white rounded-sm hover:bg-white hover:text-primary transition-colors duration-300"
                     >
-                        Acceso B2B
+                        {t('accesoB2B')}
                     </Link>
+                    <LanguageSwitcher />
                 </div>
 
                 {/* Mobile Menu Toggle */}
                 <div className="xl:hidden flex items-center space-x-4 z-50">
+                    <LanguageSwitcher />
                     <button
                         className="text-white p-2 focus:outline-none"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -219,14 +247,14 @@ export default function Navbar() {
                             className="w-full py-4 bg-secondary text-white text-center font-bold tracking-wider rounded-sm transition-colors hover:bg-white hover:text-primary"
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            VER PROYECTOS
+                            {t('proyectos')}
                         </Link>
                         <Link
                             href="/canal-externo"
                             className="w-full py-4 border border-white/50 text-white text-center font-bold tracking-wider rounded-sm transition-colors hover:bg-white hover:text-primary"
                             onClick={() => setMobileMenuOpen(false)}
                         >
-                            ACCESO BROKERS (B2B)
+                            {t('accesoB2B')}
                         </Link>
                     </div>
                 </div>

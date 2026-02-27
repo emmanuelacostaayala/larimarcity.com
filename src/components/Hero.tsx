@@ -2,8 +2,38 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Calendar } from "lucide-react";
+import { useLocale } from "next-intl";
+
+const content = {
+    es: {
+        badge: "La Primera Smart City del Caribe",
+        title_1: "Larimar City",
+        title_2: "& Resort",
+        desc: "Descubre un nuevo horizonte en Punta Cana. Un ecosistema de lujo con",
+        desc_highlight: "22,000 propiedades",
+        desc_2: "para vivienda, inversión y experiencias exclusivas.",
+        btnAgenda: "Agenda una Visita",
+        btnBrochure: "Descargar Brochure",
+        btnContact: "Contactar Asesor",
+        scrollLabel: "Descubrir"
+    },
+    en: {
+        badge: "The Caribbean's First Smart City",
+        title_1: "Larimar City",
+        title_2: "& Resort",
+        desc: "Discover a new horizon in Punta Cana. A luxury ecosystem with",
+        desc_highlight: "22,000 properties",
+        desc_2: "for living, investment, and exclusive experiences.",
+        btnAgenda: "Schedule a Visit",
+        btnBrochure: "Download Brochure",
+        btnContact: "Contact Advisor",
+        scrollLabel: "Discover"
+    }
+};
 
 export default function Hero() {
+    const locale = useLocale();
+    const t = locale === 'en' ? content.en : content.es;
     const blurReveal = {
         hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
         visible: { opacity: 1, y: 0, filter: "blur(0px)" }
@@ -34,7 +64,7 @@ export default function Hero() {
                 >
                     <span className="w-2 h-2 rounded-full bg-accent animate-pulse mr-3" />
                     <span className="text-white tracking-[0.3em] text-xs md:text-sm font-medium uppercase">
-                        La Primera Smart City del Caribe
+                        {t.badge}
                     </span>
                 </motion.div>
 
@@ -45,7 +75,7 @@ export default function Hero() {
                     transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
                     className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-playfair text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 max-w-5xl"
                 >
-                    Larimar City <span className="font-light italic">& Resort</span>
+                    {t.title_1} <span className="font-light italic">{t.title_2}</span>
                 </motion.h1>
 
                 <motion.p
@@ -55,7 +85,7 @@ export default function Hero() {
                     transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
                     className="text-slate-200 text-lg md:text-xl lg:text-2xl max-w-3xl mb-14 font-light leading-relaxed"
                 >
-                    Descubre un nuevo horizonte en Punta Cana. Un ecosistema de lujo con <strong className="font-medium text-white">22,000 propiedades</strong> para vivienda, inversión y experiencias exclusivas.
+                    {t.desc} <strong className="font-medium text-white">{t.desc_highlight}</strong> {t.desc_2}
                 </motion.p>
 
                 <motion.div
@@ -68,7 +98,7 @@ export default function Hero() {
                     {/* Primary Glass Button */}
                     <button className="relative overflow-hidden w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/30 backdrop-blur-md text-white hover:bg-white hover:text-primary transition-all duration-500 rounded-sm font-medium flex items-center justify-center group shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.3)]">
                         <span className="relative z-10 flex items-center">
-                            Agenda una Visita
+                            {t.btnAgenda}
                             <Calendar className="ml-3 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                         </span>
                         {/* Shimmer effect */}
@@ -76,12 +106,12 @@ export default function Hero() {
                     </button>
 
                     <button className="w-full sm:w-auto px-8 py-4 text-white/80 hover:text-white transition-colors duration-300 font-medium flex items-center justify-center group">
-                        Descargar Brochure
+                        {t.btnBrochure}
                         <Download className="ml-2 w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300" />
                     </button>
 
                     <button className="w-full sm:w-auto px-6 py-4 text-white/80 hover:text-white transition-colors duration-300 font-medium flex items-center justify-center group">
-                        Contactar Asesor
+                        {t.btnContact}
                         <ArrowRight className="ml-2 w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                     </button>
                 </motion.div>
@@ -94,7 +124,7 @@ export default function Hero() {
                 transition={{ delay: 2, duration: 1 }}
                 className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20"
             >
-                <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase font-bold">Descubrir</span>
+                <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase font-bold">{t.scrollLabel}</span>
                 <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
                     <motion.div
                         animate={{ y: ["-100%", "200%"] }}

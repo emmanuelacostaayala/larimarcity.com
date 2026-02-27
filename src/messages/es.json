@@ -1,0 +1,51 @@
+{
+    "Navbar": {
+        "inicio": "INICIO",
+        "larimarCity": "LARIMAR CITY",
+        "vision": "Visión",
+        "ciudadSostenible": "Ciudad Sostenible",
+        "amenidades": "Amenidades",
+        "golfAndCountry": "Golf & Country",
+        "proyectos": "PROYECTOS",
+        "faseIMasterplan": "Fase I - Masterplan",
+        "liveTowers": "Live Towers",
+        "horizonView": "Horizon View",
+        "primeTowers": "Prime Towers",
+        "breezeTowers": "Breeze Towers",
+        "villasAndTownhouses": "Villas & Townhouses",
+        "inversion": "INVERSIÓN",
+        "inversionSegura": "Inversión Segura",
+        "invertirComoExtranjero": "Invertir como Extranjero",
+        "rentaVacacional": "Renta Vacacional",
+        "actualidad": "ACTUALIDAD",
+        "noticias": "Noticias",
+        "blog": "Blog",
+        "eventos": "Eventos",
+        "contacto": "CONTACTO",
+        "contactanos": "Contáctanos",
+        "agendaUnaVisita": "Agenda una Visita",
+        "servicioPostventa": "Servicio Postventa",
+        "canalExterno": "Canal Externo (B2B)",
+        "corporativo": "CORPORATIVO",
+        "grupoClerhp": "Grupo Clerhp (BME: CLR)",
+        "oficinasCorporativas": "Oficinas Corporativas",
+        "nuestroEquipo": "Nuestro Equipo",
+        "visitanos": "Visítanos",
+        "accesoB2B": "Acceso B2B"
+    },
+    "Footer": {
+        "descubre": "La primera Smart City del Caribe. Un proyecto disruptivo que integra sostenibilidad, tecnología y lujo en la cota más alta de Punta Cana.",
+        "navegacion": "Navegación",
+        "corporativoTitulo": "Corporativo",
+        "contactoTitulo": "Contacto",
+        "llamanos": "Llámanos",
+        "avisoLegal": "Aviso Legal",
+        "privacidad": "Política de Privacidad",
+        "cookies": "Cookies",
+        "derechos": "© {year} Larimar City & Resort. Todos los derechos reservados. Un proyecto de Grupo CLERHP."
+    },
+    "LocaleSwitcher": {
+        "es": "Español (ES)",
+        "en": "English (EN)"
+    }
+}

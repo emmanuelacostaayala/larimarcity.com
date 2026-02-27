@@ -1,0 +1,51 @@
+{
+    "Navbar": {
+        "inicio": "HOME",
+        "larimarCity": "LARIMAR CITY",
+        "vision": "Vision",
+        "ciudadSostenible": "Sustainable City",
+        "amenidades": "Amenities",
+        "golfAndCountry": "Golf & Country",
+        "proyectos": "PROJECTS",
+        "faseIMasterplan": "Phase I - Masterplan",
+        "liveTowers": "Live Towers",
+        "horizonView": "Horizon View",
+        "primeTowers": "Prime Towers",
+        "breezeTowers": "Breeze Towers",
+        "villasAndTownhouses": "Villas & Townhouses",
+        "inversion": "INVESTMENT",
+        "inversionSegura": "Safe Investment",
+        "invertirComoExtranjero": "Invest as a Foreigner",
+        "rentaVacacional": "Vacation Rental",
+        "actualidad": "NEWS",
+        "noticias": "News",
+        "blog": "Blog",
+        "eventos": "Events",
+        "contacto": "CONTACT",
+        "contactanos": "Contact Us",
+        "agendaUnaVisita": "Schedule a Visit",
+        "servicioPostventa": "After-Sales Service",
+        "canalExterno": "External Channel (B2B)",
+        "corporativo": "CORPORATE",
+        "grupoClerhp": "Clerhp Group (BME: CLR)",
+        "oficinasCorporativas": "Corporate Offices",
+        "nuestroEquipo": "Our Team",
+        "visitanos": "Visit Us",
+        "accesoB2B": "B2B Login"
+    },
+    "Footer": {
+        "descubre": "The first Smart City in the Caribbean. A disruptive project integrating sustainability, technology, and luxury at the highest point of Punta Cana.",
+        "navegacion": "Navigation",
+        "corporativoTitulo": "Corporate",
+        "contactoTitulo": "Contact",
+        "llamanos": "Call Us",
+        "avisoLegal": "Legal Notice",
+        "privacidad": "Privacy Policy",
+        "cookies": "Cookies",
+        "derechos": "© {year} Larimar City & Resort. All rights reserved. A project by Grupo CLERHP."
+    },
+    "LocaleSwitcher": {
+        "es": "Español (ES)",
+        "en": "English (EN)"
+    }
+}
