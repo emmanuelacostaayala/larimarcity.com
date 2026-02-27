@@ -9,9 +9,9 @@ import { useLocale } from "next-intl";
 
 const content = {
   es: {
-    heroBadge: "El Comienzo del Futuro",
-    heroTitle_1: "Fase I:",
-    heroTitle_2: "El Origen.",
+    heroBadge: "Construyendo el Futuro del Caribe",
+    heroTitle_1: "Fase I Larimar:",
+    heroTitle_2: "Promoción en RD.",
     heroDesc: "La consolidación del núcleo urbano de Larimar City. Un despliegue arquitectónico sin precedentes que integra 10 torres residenciales, villas de gran lujo y el primer tramo del malecón comercial.",
     ctaMasterplan: "Descargar Masterplan PDF",
     mapTitle_1: "Explora el",

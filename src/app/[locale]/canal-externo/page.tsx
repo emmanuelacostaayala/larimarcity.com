@@ -86,22 +86,60 @@ export default function CanalExternoPage() {
                         </div>
 
                         {/* Simulated Interactive World Map using Tailwind layouting representing coordinates conceptually */}
-                        <div className="lg:col-span-2 relative h-[500px] bg-slate-100 rounded-md border border-slate-200 overflow-hidden flex items-center justify-center">
-                            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEiPjwvcGF0aD4KPC9zdmc+")', backgroundSize: '16px' }} />
-                            <Globe className="absolute w-[800px] h-[800px] text-slate-200 scale-150 transform -translate-y-20 opacity-50" />
-                            <div className="relative z-10 text-center">
-                                <p className="text-slate-500 uppercase tracking-widest font-bold mb-4">
-                                    {locale === 'en' ? '[ INTERACTIVE MAP SIMULATION ]' : '[ SIMULACIÓN MAPA INTERACTIVO ]'}
-                                </p>
-                                <p className="text-sm text-slate-400 max-w-sm mx-auto">
-                                    {locale === 'en' ? 'Through a geographic API connector (Google Maps / Mapbox), this space will render global coverage and clickable profiles of authorized brokers.' : 'A través de un conector API geográfico (Google Maps / Mapbox), este espacio renderizará la cobertura mundial y los perfiles clickeables de los brokers autorizados.'}
-                                </p>
+                        <div className="lg:col-span-2 relative h-[600px] bg-slate-900 rounded-md border border-white/10 overflow-hidden flex flex-col items-center group">
+                            <div className="absolute inset-0 z-0 opacity-20">
+                                <Globe className="w-full h-full text-secondary animate-slow-spin" />
                             </div>
 
-                            {/* Mocking plotted dots */}
-                            <div className="absolute top-1/3 left-1/4 w-4 h-4 bg-secondary rounded-full shadow-[0_0_15px_rgba(79,176,198,0.8)] animate-pulse" />
-                            <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-secondary rounded-full shadow-[0_0_15px_rgba(79,176,198,0.8)] animate-pulse" />
-                            <div className="absolute top-[40%] right-1/4 w-4 h-4 bg-primary rounded-full shadow-[0_0_15px_rgba(18,55,85,0.8)]" />
+                            {/* Hierarchy Tree Overlay */}
+                            <div className="relative z-10 w-full p-8 bg-black/40 backdrop-blur-md flex flex-col items-center">
+                                <p className="text-secondary text-xs font-bold tracking-[0.3em] uppercase mb-8">{locale === 'en' ? 'Operational Structure' : 'Estructura Operativa'}</p>
+                                <div className="flex flex-col items-center gap-12 w-full max-w-2xl">
+                                    {/* Level 1: HQ */}
+                                    <div className="relative p-4 border border-secondary bg-secondary/10 rounded-sm text-center min-w-[200px] shadow-[0_0_20px_rgba(79,176,198,0.3)]">
+                                        <p className="text-white font-bold">{locale === 'en' ? 'CLERHP Group HQ' : 'Sede Central CLERHP'}</p>
+                                        <div className="absolute -bottom-12 left-1/2 w-[1px] h-12 bg-secondary" />
+                                    </div>
+
+                                    {/* Level 2: Offices / Master Brokers */}
+                                    <div className="flex justify-between w-full h-24 items-end relative">
+                                        <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-secondary" />
+                                        <div className="absolute top-0 left-1/4 w-[1px] h-8 bg-secondary" />
+                                        <div className="absolute top-0 right-1/4 w-[1px] h-8 bg-secondary" />
+
+                                        <div className="p-3 border border-slate-700 bg-slate-800/80 rounded-sm text-xs text-center min-w-[140px]">
+                                            <p className="text-white">{locale === 'en' ? 'Regional Offices' : 'Oficinas Regionales'}</p>
+                                        </div>
+                                        <div className="p-3 border border-slate-700 bg-slate-800/80 rounded-sm text-xs text-center min-w-[140px]">
+                                            <p className="text-white">{locale === 'en' ? 'Master Brokers' : 'Master Brokers'}</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Level 3: Network */}
+                                    <p className="text-slate-400 text-[10px] italic mt-4">
+                                        {locale === 'en' ? 'Click on map markers to view assigned Brokers and local offices.' : 'Haz clic en los puntos del mapa para ver Brokers asignados y oficinas locales.'}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="relative z-10 flex-grow w-full flex items-center justify-center p-12">
+                                <div className="text-center">
+                                    <p className="text-slate-500 uppercase tracking-widest font-bold mb-4">
+                                        {locale === 'en' ? '[ INTERACTIVE MAP ACTIVE ]' : '[ MAPA INTERACTIVO ACTIVO ]'}
+                                    </p>
+                                    <button className="px-6 py-2 border border-secondary text-secondary text-xs uppercase font-bold hover:bg-secondary hover:text-white transition-all">
+                                        {locale === 'en' ? 'Filter by Country' : 'Filtrar por País'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Plotted dots with data hints */}
+                            <div className="absolute top-[60%] left-1/4 w-3 h-3 bg-secondary rounded-full shadow-[0_0_15px_rgba(79,176,198,0.8)] animate-pulse cursor-pointer group/dot">
+                                <div className="hidden group-hover/dot:block absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-primary p-2 rounded-sm text-[10px] font-bold whitespace-nowrap z-50 shadow-xl">
+                                    Miami Hub: 12 Brokers
+                                </div>
+                            </div>
+                            <div className="absolute top-2/3 left-1/2 w-3 h-3 bg-secondary rounded-full shadow-[0_0_15px_rgba(79,176,198,0.8)] animate-pulse cursor-pointer" />
                         </div>
                     </div>
                 </div>

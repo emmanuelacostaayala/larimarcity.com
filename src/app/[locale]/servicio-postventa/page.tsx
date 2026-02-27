@@ -34,7 +34,10 @@ export default function PostventaPage() {
                   )}
                 </h1>
                 <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-                  {locale === 'en' ? 'At Larimar City & Resort, personal guidance is the core of our philosophy. We create homes, not just buildings, guiding you from anywhere in the world until you receive your keys.' : 'En Larimar City & Resort, el acompañamiento personal es el centro de nuestra filosofía. Creamos hogares, no solo edificios, guiándote desde cualquier lugar del mundo hasta que recibes tus llaves.'}
+                  {locale === 'en' ? 'At Larimar City & Resort, the experience does not end with the purchase. It is here that a new stage begins: turning a real estate investment into a real home. We accompany you until Larimar becomes your home in Punta Cana.' : 'En Larimar City & Resort, la experiencia no termina con la compra de una vivienda. Al contrario. Es ahí donde comienza una nueva etapa: la de convertir una inversión inmobiliaria en un hogar real. Nuestro compromiso es estar a tu lado hasta que Larimar deje de ser un proyecto y se convierta en tu hogar.'}
+                </p>
+                <p className="mt-4 text-slate-500 text-md font-light">
+                  {locale === 'en' ? 'Special programs: Larimar Experience & Fly and Fall in Love.' : 'Programas exclusivos: Larimar Experience & Fly and Fall in Love.'}
                 </p>
               </motion.div>
             </div>
