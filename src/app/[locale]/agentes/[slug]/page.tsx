@@ -4,14 +4,26 @@ import { Link } from "@/i18n/routing";
 import { getAgentBySlug, agents } from "@/data/agents";
 import { Mail, Phone, MapPin, Globe, Linkedin, ArrowLeft } from "lucide-react";
 
+import { routing } from "@/i18n/routing";
+
 export function generateStaticParams() {
-    return agents.map((agent) => ({
-        slug: agent.slug,
-    }));
+    const params: { locale: string; slug: string }[] = [];
+
+    routing.locales.forEach((locale: any) => {
+        agents.forEach((agent) => {
+            params.push({
+                locale,
+                slug: agent.slug,
+            });
+        });
+    });
+
+    return params;
 }
 
-export default function AgentProfilePage({ params }: { params: { slug: string } }) {
-    const agent = getAgentBySlug(params.slug);
+export default async function AgentProfilePage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+    const { slug } = await params;
+    const agent = getAgentBySlug(slug);
 
     if (!agent) {
         notFound();

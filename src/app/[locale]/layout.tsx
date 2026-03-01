@@ -18,6 +18,10 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: t('description'),
   };
 }
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 import { routing } from '@/i18n/routing';
 
 export default async function RootLayout({

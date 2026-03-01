@@ -1,6 +1,6 @@
 import { posts } from "@/data/posts";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Calendar, User, ChevronLeft, Share2, Bookmark } from "lucide-react";
 import { Metadata } from "next";
@@ -22,9 +22,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
+    const params: { locale: string; slug: string }[] = [];
+
+    routing.locales.forEach((locale: any) => {
+        posts.forEach((post) => {
+            params.push({
+                locale,
+                slug: post.slug,
+            });
+        });
+    });
+
+    return params;
 }
 
 export default async function BlogPostPage({ params }: Props) {
