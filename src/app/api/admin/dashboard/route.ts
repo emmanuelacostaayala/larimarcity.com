@@ -32,6 +32,33 @@ export async function GET(req: NextRequest) {
 
     const dealsByStage = dealsByStageRows.map((row) => ({ stage: row.stageId, count: row._count.id }));
 
+    // --- FUNNEL METRICS (TOFU, MOFU, BOFU) ---
+    // TOFU (Atracción): All Leads + Deals in NEW/UNASSIGNED/ASIGNADO stages
+    // MOFU (Consideración): Deals in PREPARATION, NEGOTIATION, CALL, APPOINTMENT stages
+    // BOFU (Cierre): Deals in CONTRACT, RESERVATION, WON stages
+    let tofuDeals = 0;
+    let mofuDeals = 0;
+    let bofuDeals = 0;
+
+    dealsByStageRows.forEach(row => {
+        const s = row.stageId.toUpperCase();
+        if (s.includes("WON") || s.includes("RESERVA") || s.includes("CONTRATO") || s.includes("CLOSE")) {
+            bofuDeals += row._count.id;
+        } else if (s.includes("NEW") || s.includes("UNASSIGNED") || s.includes("ASIGNADO") || s.includes("LOSE") || s.includes("JUNK")) {
+            // Include lost deals in TOFU for drop-off calculation context, or just count active TOFU
+            tofuDeals += row._count.id;
+        } else {
+            // Everything else in the middle (Preparation, Call, Appointment, etc)
+            mofuDeals += row._count.id;
+        }
+    });
+
+    const funnelMetrics = {
+        tofu: totalLeads + tofuDeals,
+        mofu: mofuDeals,
+        bofu: bofuDeals,
+    };
+
     // Aggregate leads by date (last 7 days)
     const rawLeadsByDate = await prisma.$queryRaw<Array<{ date: Date, count: bigint }>>`
         SELECT DATE("createdAt") as date, COUNT(*) as count 
@@ -111,6 +138,7 @@ export async function GET(req: NextRequest) {
             dealsByStage: { stage: string; count: number }[];
             leadsByDate: { date: string; count: number }[];
             duplicateLeadsCount: number;
+            funnelMetrics: { tofu: number; mofu: number; bofu: number };
         };
         data: any[];
         pagination: {
@@ -122,7 +150,7 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json<DashboardData>({
-        summary: { totalLeads, junkLeads, totalDeals, stagnantCount: stagnantDeals, unassignedCount: unassignedDeals, dealsByStage, leadsByDate, duplicateLeadsCount },
+        summary: { totalLeads, junkLeads, totalDeals, stagnantCount: stagnantDeals, unassignedCount: unassignedDeals, dealsByStage, leadsByDate, duplicateLeadsCount, funnelMetrics },
         data: items,
         pagination: {
             page,

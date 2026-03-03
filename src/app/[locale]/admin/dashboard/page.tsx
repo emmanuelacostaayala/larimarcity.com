@@ -36,6 +36,7 @@ interface DashboardData {
         dealsByStage?: { stage: string; count: number }[];
         leadsByDate?: { date: string; count: number }[];
         duplicateLeadsCount: number;
+        funnelMetrics?: { tofu: number; mofu: number; bofu: number };
     };
     data: (Lead | Deal)[];
     pagination: {
@@ -185,6 +186,7 @@ export default function AdminDashboard() {
 
     // Core Layout State
     const [viewMode, setViewMode] = useState<"leads" | "deals">("leads");
+    const [showHealth, setShowHealth] = useState(true);
     const [activeTab, setActiveTab] = useState<"leads" | "deals" | "junk" | "stagnant" | "unassigned">("leads");
 
     const [page, setPage] = useState(1);
@@ -287,12 +289,12 @@ export default function AdminDashboard() {
     // Separate tabs by context
     const leadsTabs = [
         { key: "leads", label: "📋 Base de Datos Leads", count: data?.summary.totalLeads },
-        { key: "junk", label: "� Leads Junk", count: data?.summary.junkLeads },
+        { key: "junk", label: " Leads Junk", count: data?.summary.junkLeads },
     ] as const;
 
     const dealsTabs = [
         { key: "deals", label: "💼 Pipeline de Negocios", count: data?.summary.totalDeals },
-        { key: "unassigned", label: "� Sin Responsable", count: data?.summary.unassignedCount },
+        { key: "unassigned", label: " Sin Responsable", count: data?.summary.unassignedCount },
         { key: "stagnant", label: "⏳ Estancados", count: data?.summary.stagnantCount },
     ] as const;
 
@@ -355,81 +357,117 @@ export default function AdminDashboard() {
                     >
                         💼 Ventas (Deals)
                     </button>
+                    <button
+                        onClick={() => setShowHealth(!showHealth)}
+                        className={`ml-4 px-4 py-3 rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2 border ${showHealth ? "bg-white/10 text-white border-white/20" : "bg-transparent text-white/40 border-white/5 hover:text-white/60"}`}
+                        title={showHealth ? "Ocultar Health Analytics" : "Mostrar Health Analytics"}
+                    >
+                        {showHealth ? "👁️ Ocultar Analytics" : "👁️‍🗨️ Ver Analytics"}
+                    </button>
                 </div>
 
-                {/* --- AI TEXT REPORT --- */}
-                <DataInsights data={data} viewMode={viewMode} />
-
                 {/* --- HEALTH & ANALYTICS WIDGETS --- */}
-                <div className="mb-10">
-                    <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                        {viewMode === "leads" ? "📊 Salud de Marketing" : "📊 Pipeline Management"}
-                    </h2>
+                {showHealth && (
+                    <div className="mb-10 animate-fade-in">
+                        {/* --- AI TEXT REPORT --- */}
+                        <DataInsights data={data} viewMode={viewMode} />
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {/* Summary Stats Column */}
-                        <div className="space-y-4">
-                            {viewMode === "leads" ? (
-                                <>
-                                    <StatCard label="Total Leads Importados" value={data?.summary.totalLeads || 0} accent="border-white/10" />
-                                    <StatCard label="Leads Junk (Inválidos) 🚫" value={data?.summary.junkLeads || 0} accent="border-red-500/30" />
-                                </>
-                            ) : (
-                                <>
-                                    <StatCard label="Total Deals (Oportunidades)" value={data?.summary.totalDeals || 0} accent="border-blue-500/30" />
-                                    <StatCard label="Deals sin Responsable 👤" value={data?.summary.unassignedCount || 0} accent="border-orange-500/30" />
-                                    <StatCard label="Tratos Estancados ⏳" value={data?.summary.stagnantCount || 0} accent="border-amber-500/30" />
-                                </>
-                            )}
-                        </div>
+                        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                            <span>📊</span> Health Analytics
+                        </h2>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            {/* Chart 1 */}
+                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl h-[300px] flex flex-col">
+                                <h3 className="text-sm font-semibold text-white/60 mb-6 uppercase tracking-wider">
+                                    {viewMode === "deals" ? "Distribución por Etapa (Deals Activos)" : "Volumen de Captación (Últimos 7 días)"}
+                                </h3>
+                                <div className="flex-1 min-h-0 relative">
+                                    {viewMode === "deals" && data?.summary.dealsByStage ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={data.summary.dealsByStage} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                                                <XAxis dataKey="stage" stroke="rgba(255,255,255,0.4)" fontSize={11} tickMargin={10} axisLine={false} tickLine={false} tickFormatter={(val) => val.length > 10 ? val.substring(0, 10) + "..." : val} />
+                                                <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} axisLine={false} tickLine={false} />
+                                                <Tooltip
+                                                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                                                    contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                                                    itemStyle={{ color: '#fff' }}
+                                                />
+                                                <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                                                    {data.summary.dealsByStage.map((entry, index) => (
+                                                        <Cell key={`cell-${index}`} fill={getChartColor(entry.stage)} />
+                                                    ))}
+                                                </Bar>
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    ) : viewMode === "leads" && data?.summary.leadsByDate ? (
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <BarChart data={data.summary.leadsByDate} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                                                <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={11} tickMargin={10} axisLine={false} tickLine={false} />
+                                                <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} axisLine={false} tickLine={false} />
+                                                <Tooltip
+                                                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                                                    contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                                                    itemStyle={{ color: '#fff' }}
+                                                />
+                                                <Bar dataKey="count" radius={[4, 4, 0, 0]} fill="#C9A84C" />
+                                            </BarChart>
+                                        </ResponsiveContainer>
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center text-white/30 text-sm border border-dashed border-white/10 rounded-lg">
+                                            Data insuficiente.
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
 
-                        {/* Chart Column */}
-                        <div className="lg:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-6 h-[250px] flex flex-col">
-                            <h3 className="text-sm text-white/50 mb-4 font-medium uppercase tracking-wider">
-                                {viewMode === "leads" ? "Volumen de Leads" : "Distribución de Negocios por Etapa"}
-                            </h3>
-                            <div className="flex-1 w-full relative">
-                                {viewMode === "deals" && data?.summary.dealsByStage ? (
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <BarChart data={data.summary.dealsByStage} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
-                                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                                            <XAxis dataKey="stage" stroke="rgba(255,255,255,0.4)" fontSize={11} tickMargin={10} axisLine={false} tickLine={false} />
-                                            <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} axisLine={false} tickLine={false} />
-                                            <Tooltip
-                                                cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                                                contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                                                itemStyle={{ color: '#fff' }}
-                                            />
-                                            <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-                                                {data.summary.dealsByStage.map((entry, index) => (
-                                                    <Cell key={`cell-${index}`} fill={getChartColor(entry.stage)} />
-                                                ))}
-                                            </Bar>
-                                        </BarChart>
-                                    </ResponsiveContainer>
-                                ) : viewMode === "leads" && data?.summary.leadsByDate ? (
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <BarChart data={data.summary.leadsByDate} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
-                                            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                                            <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={11} tickMargin={10} axisLine={false} tickLine={false} />
-                                            <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} axisLine={false} tickLine={false} />
-                                            <Tooltip
-                                                cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                                                contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                                                itemStyle={{ color: '#fff' }}
-                                            />
-                                            <Bar dataKey="count" radius={[4, 4, 0, 0]} fill="#C9A84C" />
-                                        </BarChart>
-                                    </ResponsiveContainer>
-                                ) : (
-                                    <div className="absolute inset-0 flex items-center justify-center text-white/30 text-sm border border-dashed border-white/10 rounded-lg">
-                                        Data insuficiente.
-                                    </div>
-                                )}
+                            {/* Chart 2: Funnel */}
+                            <div className="bg-white/5 border border-white/10 p-6 rounded-2xl h-[300px] flex flex-col">
+                                <h3 className="text-sm font-semibold text-white/60 mb-6 uppercase tracking-wider">Embudo de Conversión Comercial</h3>
+                                <div className="flex-1 min-h-0 relative flex flex-col justify-center gap-2">
+                                    {data?.summary.funnelMetrics ? (
+                                        <div className="w-full max-w-sm mx-auto space-y-3">
+                                            {/* TOFU */}
+                                            <div className="w-full group">
+                                                <div className="flex justify-between text-xs mb-1 text-white/60 group-hover:text-white transition-colors">
+                                                    <span>Top of Funnel (Atracción)</span>
+                                                    <span className="font-mono bg-white/10 px-1.5 rounded">{data.summary.funnelMetrics.tofu}</span>
+                                                </div>
+                                                <div className="h-6 w-full bg-[#facc15] rounded border border-white/10 shadow-[0_0_15px_rgba(250,204,21,0.2)]"></div>
+                                            </div>
+
+                                            {/* MOFU */}
+                                            <div className="w-[75%] mx-auto group">
+                                                <div className="flex justify-between text-xs mb-1 text-white/60 group-hover:text-white transition-colors">
+                                                    <span>Mid of Funnel (Consideración)</span>
+                                                    <span className="font-mono bg-white/10 px-1.5 rounded">{data.summary.funnelMetrics.mofu}</span>
+                                                </div>
+                                                <div className="h-6 w-full bg-[#60a5fa] rounded border border-white/10 shadow-[0_0_15px_rgba(96,165,250,0.2)]"></div>
+                                            </div>
+
+                                            {/* BOFU */}
+                                            <div className="w-[45%] mx-auto group">
+                                                <div className="flex justify-between text-xs mb-1 text-white/60 group-hover:text-white transition-colors">
+                                                    <span>Bottom (Cierre)</span>
+                                                    <span className="font-mono bg-white/10 px-1.5 rounded flex items-center gap-1">
+                                                        {data.summary.funnelMetrics.bofu}
+                                                        {data.summary.funnelMetrics.tofu > 0 && <span className="text-[#4ade80] ml-1">({((data.summary.funnelMetrics.bofu / data.summary.funnelMetrics.tofu) * 100).toFixed(1)}%)</span>}
+                                                    </span>
+                                                </div>
+                                                <div className="h-6 w-full bg-[#4ade80] rounded border border-white/10 shadow-[0_0_15px_rgba(74,222,128,0.2)]"></div>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center text-white/30 text-sm border border-dashed border-white/10 rounded-lg">
+                                            Recopilando métricas del Funnel...
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
 
                 {/* --- CONTROLS BAR: SUB-TABS & SEARCH --- */}
                 <div className="flex flex-col md:flex-row gap-4 mb-6 justify-between items-start md:items-center">
