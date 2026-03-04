@@ -835,7 +835,7 @@ export default function AdminDashboard() {
                                     </div>
                                 </div>
                                 <div className="bg-red-500/5 border border-red-500/10 rounded-xl p-4 text-sm text-red-300/70">
-                                    <strong className="text-red-400">Diagnóstico:</strong> 812 leads calificados pendientes de primer contacto o de seguimiento. El audio identifica este bloque como "no sabemos qué pasa". Con el Webhook de Bitrix activo, este número se actualizará en tiempo real, generando alertas automáticas cuando un lead supere los 3 días sin actividad.
+                                    <strong className="text-red-400">Diagnóstico:</strong> 812 leads calificados pendientes de primer contacto o de seguimiento.
                                 </div>
                             </div>
                         </div>
