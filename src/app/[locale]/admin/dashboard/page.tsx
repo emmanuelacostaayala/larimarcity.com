@@ -447,13 +447,17 @@ export default function AdminDashboard() {
                                     <ResponsiveContainer width="100%" height="100%">
                                         <BarChart
                                             data={[
-                                                { stage: 'Acciones / Leads Brutos', value: 3263, rate: '100%', base: 3263 },
-                                                { stage: 'Prospectos Cualificados', value: 1188, rate: '36.4%', base: 3263 },
-                                                { stage: 'Negociaciones Activas (Mesa)', value: 178, rate: '15.0%', base: 1188 },
-                                                { stage: 'Negociaciones Cerradas', value: 32, rate: '20.0%', base: 178 }
+                                                { stage: 'Leads\nMarketing', value: 3263, rate: '100%' },
+                                                { stage: 'Leads\nConvertidos', value: 2210, rate: '67.7%' },
+                                                { stage: 'Leads\nCalificados', value: 1188, rate: '53.8%' },
+                                                { stage: 'Calificados\npara Venta', value: 720, rate: '60.6%' },
+                                                { stage: 'Próximos\nal Cierre', value: 178, rate: '24.7%' },
+                                                { stage: 'Negociaciones\nCerradas', value: 36, rate: '20.2%' },
+                                                { stage: 'Reservation\nPaid', value: 32, rate: '88.9%' },
+                                                { stage: 'Negociaciones\nFirmadas', value: 29, rate: '90.6%' },
                                             ]}
                                             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                                            barSize={120}
+                                            barSize={45}
                                         >
                                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff0a" />
                                             <XAxis
@@ -482,23 +486,15 @@ export default function AdminDashboard() {
                                             />
                                             <Bar dataKey="value" radius={[2, 2, 0, 0]}>
                                                 {
-                                                    [3263, 1188, 178, 32].map((entry, index) => (
-                                                        <Cell key={`cell-${index}`} fill={
-                                                            index === 0 ? '#3b82f6' :     // Blue 500
-                                                                index === 1 ? '#60a5fa' :     // Blue 400
-                                                                    index === 2 ? '#93c5fd' :     // Blue 300
-                                                                        '#10b981'                     // Emerald for closed
-                                                        } />
-                                                    ))
+                                                    [0, 1, 2, 3, 4, 5, 6, 7].map((index) => {
+                                                        const colors = ['#3b82f6', '#4f8ef0', '#5f9fe6', '#6db0d8', '#7ac0c6', '#3ab7a0', '#1ec98a', '#10b981'];
+                                                        return <Cell key={`cell-${index}`} fill={colors[index]} />;
+                                                    })
                                                 }
                                             </Bar>
                                         </BarChart>
                                     </ResponsiveContainer>
 
-                                    {/* Overlay connection lines and percentages to mimic Bitrix exactly */}
-                                    <div className="absolute top-[30%] left-[22%] text-xs font-bold text-white/40 bg-[#18181b] px-1 z-10">36.4%</div>
-                                    <div className="absolute top-[60%] left-[47%] text-xs font-bold text-white/40 bg-[#18181b] px-1 z-10">15%</div>
-                                    <div className="absolute top-[80%] left-[72%] text-xs font-bold text-emerald-400/60 bg-[#18181b] px-1 z-10">20%</div>
                                 </div>
 
                                 {/* Traffic Sources Breakdown below the chart */}
@@ -566,6 +562,284 @@ export default function AdminDashboard() {
                                 </div>
                             </div>
                         </div>
+                        {/* ============================================================ */}
+                        {/* SECCIÓN B: Comparativa de Campañas — Ranking por ROI        */}
+                        {/* ============================================================ */}
+                        <div className="bg-[#18181b] border border-white/5 rounded-2xl overflow-hidden">
+                            <div className="flex justify-between items-center p-6 border-b border-white/5">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+                                    Comparativa de Campañas Activas — Ranking ROI
+                                </h3>
+                                <div className="text-xs text-zinc-500 italic">* Datos simulados — requiere API Google/Meta</div>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-white/5">
+                                            <th className="text-left p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Campaña</th>
+                                            <th className="text-left p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Plataforma</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Inversión</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Leads</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">CPL</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Qualify%</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Ventas</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">CAC</th>
+                                            <th className="text-center p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">ROI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/[0.03]">
+                                        {[
+                                            { name: 'NJ English — Lead Form', platform: 'Meta', platformColor: 'text-blue-400', invest: '$42,000', leads: 1105, cpl: '$38', qualify: '42%', sales: 13, cac: '$3,230', roi: 'Alto', roiColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+                                            { name: 'Miami Spanish — Video Ads', platform: 'Meta', platformColor: 'text-blue-400', invest: '$43,200', leads: 771, cpl: '$56', qualify: '31%', sales: 9, cac: '$4,800', roi: 'Medio', roiColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+                                            { name: 'NJ Search — Brand Keywords', platform: 'Google', platformColor: 'text-red-400', invest: '$35,000', leads: 795, cpl: '$44', qualify: '40%', sales: 6, cac: '$5,833', roi: 'Medio', roiColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+                                            { name: 'Manchester — Display Network', platform: 'Google', platformColor: 'text-red-400', invest: '$33,200', leads: 592, cpl: '$56', qualify: '37%', sales: 4, cac: '$8,300', roi: 'Bajo', roiColor: 'bg-red-500/10 text-red-400 border-red-500/20' },
+                                        ].map((camp, i) => (
+                                            <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${i === 0 ? 'bg-emerald-500/[0.02]' : ''}`}>
+                                                <td className="p-4 text-white/80 font-medium">{camp.name}</td>
+                                                <td className={`p-4 font-medium ${camp.platformColor}`}>{camp.platform}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{camp.invest}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{camp.leads.toLocaleString()}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{camp.cpl}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{camp.qualify}</td>
+                                                <td className="p-4 text-emerald-400 text-right font-mono font-semibold">{camp.sales}</td>
+                                                <td className="p-4 text-white/40 text-right font-mono">{camp.cac}</td>
+                                                <td className="p-4 text-center">
+                                                    <span className={`text-xs font-bold px-2 py-1 rounded border ${camp.roiColor}`}>{camp.roi}</span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="px-6 py-3 bg-emerald-500/5 border-t border-emerald-500/10 text-xs text-emerald-400/70">
+                                Recomendación: Aumentar presupuesto en "NJ English — Lead Form" (Meta). Menor CAC del portfolio ($3,230 vs. promedio $5,541). Pausar "Manchester — Display" hasta optimizar segmentación.
+                            </div>
+                        </div>
+
+                        {/* ============================================================ */}
+                        {/* SECCIÓN C: Proyección Anual 2026 — Real vs Objetivo          */}
+                        {/* ============================================================ */}
+                        <div className="bg-[#18181b] border border-white/5 rounded-2xl overflow-hidden">
+                            <div className="flex justify-between items-center p-6 border-b border-white/5">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
+                                    Proyección Anual 2026 — Ventas Netas: Real vs. Objetivo
+                                </h3>
+                                <div className="flex items-center gap-4 text-xs text-zinc-500">
+                                    <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-indigo-400"></span> Objetivo</span>
+                                    <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-0.5 bg-emerald-400"></span> Real (YTD)</span>
+                                    <span className="italic text-zinc-600">* Simulado</span>
+                                </div>
+                            </div>
+                            <div className="p-6 h-72">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart
+                                        data={[
+                                            { mes: 'Ene', objetivo: 32, real: 28 },
+                                            { mes: 'Feb', objetivo: 33, real: 33 },
+                                            { mes: 'Mar', objetivo: 33, real: 29 },
+                                            { mes: 'Abr', objetivo: 37, real: null },
+                                            { mes: 'May', objetivo: 40, real: null },
+                                            { mes: 'Jun', objetivo: 53, real: null },
+                                            { mes: 'Jul', objetivo: 57, real: null },
+                                            { mes: 'Ago', objetivo: 62, real: null },
+                                            { mes: 'Sep', objetivo: 66, real: null },
+                                            { mes: 'Oct', objetivo: 83, real: null },
+                                            { mes: 'Nov', objetivo: 91, real: null },
+                                            { mes: 'Dic', objetivo: 100, real: null },
+                                        ]}
+                                        margin={{ top: 10, right: 10, left: -15, bottom: 0 }}
+                                        barGap={4}
+                                        barSize={18}
+                                    >
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff08" />
+                                        <XAxis dataKey="mes" axisLine={false} tickLine={false} tick={{ fill: '#ffffff55', fontSize: 12 }} />
+                                        <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 11 }} />
+                                        <Tooltip
+                                            cursor={{ fill: '#ffffff05' }}
+                                            contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                                            itemStyle={{ color: '#fff' }}
+                                            labelFormatter={(label) => `Mes: ${label}`}
+                                        />
+                                        <Bar dataKey="objetivo" fill="#6366f1" opacity={0.35} radius={[2, 2, 0, 0]} name="objetivo" />
+                                        <Bar dataKey="real" fill="#10b981" radius={[2, 2, 0, 0]} name="real" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                            <div className="grid grid-cols-3 divide-x divide-white/5 border-t border-white/5">
+                                <div className="p-4 text-center">
+                                    <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">Objetivo Anual</div>
+                                    <div className="text-white font-light text-xl">749 ventas</div>
+                                    <div className="text-zinc-600 text-xs mt-1">$162M ingresos</div>
+                                </div>
+                                <div className="p-4 text-center">
+                                    <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">Real YTD (Q1)</div>
+                                    <div className="text-emerald-400 font-light text-xl">90 ventas</div>
+                                    <div className="text-zinc-600 text-xs mt-1">$18.3M ingresos</div>
+                                </div>
+                                <div className="p-4 text-center">
+                                    <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">Desviación Q1</div>
+                                    <div className="text-red-400 font-light text-xl">–8 ventas</div>
+                                    <div className="text-zinc-600 text-xs mt-1">Objetivo Q1: 98 ventas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ============================================================ */}
+                        {/* SECCIÓN D: KPI4/KPI5 + Costes Operativos + EBITDA            */}
+                        {/* ============================================================ */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            {/* KPI4/KPI5 */}
+                            <div className="bg-[#18181b] border border-white/5 rounded-2xl p-6 space-y-4">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2 mb-2">
+                                    <svg className="w-5 h-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>
+                                    KPI4 &amp; KPI5 — Eficiencia del Revenue
+                                </h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-[#111] rounded-xl p-4">
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">KPI4 — Venta / Lead Calificado</div>
+                                        <div className="text-2xl font-light text-white">$6,732</div>
+                                        <div className="text-zinc-500 text-xs mt-1">ingreso generado por cada lead Q</div>
+                                    </div>
+                                    <div className="bg-[#111] rounded-xl p-4">
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">KPI5 — Venta / Lead Bruto</div>
+                                        <div className="text-2xl font-light text-white">$2,452</div>
+                                        <div className="text-zinc-500 text-xs mt-1">ingreso por cada lead captado</div>
+                                    </div>
+                                    <div className="bg-[#111] rounded-xl p-4 col-span-2">
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">CPS — Coste por Venta (CAC Operativo)</div>
+                                        <div className="text-2xl font-light text-white">$4,781</div>
+                                        <div className="text-zinc-500 text-xs mt-1">incluye marketing + comercial + operaciones</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Costes Operativos + EBITDA */}
+                            <div className="bg-[#18181b] border border-white/5 rounded-2xl p-6 space-y-4">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2 mb-2">
+                                    <svg className="w-5 h-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    Estructura de Costes — Enero 2026
+                                </h3>
+                                <div className="space-y-3">
+                                    {[
+                                        { label: 'Coste Marketing (KPI1)', value: '$153,400', pct: '36.7%', color: 'bg-blue-500' },
+                                        { label: 'Coste Laboral (1.30%)', value: '$104,000', pct: '24.9%', color: 'bg-amber-500' },
+                                        { label: 'Coste Comisiones (2.00%)', value: '$160,000', pct: '38.4%', color: 'bg-purple-500' },
+                                    ].map((item, i) => (
+                                        <div key={i}>
+                                            <div className="flex justify-between text-xs mb-1">
+                                                <span className="text-zinc-400">{item.label}</span>
+                                                <span className="text-white/60 font-mono">{item.value} <span className="text-zinc-600">({item.pct})</span></span>
+                                            </div>
+                                            <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                                <div className={`h-full ${item.color} rounded-full`} style={{ width: item.pct }} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="border-t border-white/5 pt-4 mt-4 grid grid-cols-2 gap-4">
+                                    <div>
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">Coste Total</div>
+                                        <div className="text-white font-light text-xl">$417,400</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-1">EBITDA Implícito</div>
+                                        <div className="text-emerald-400 font-light text-xl">$6.24M</div>
+                                        <div className="text-zinc-600 text-xs mt-0.5">Venta Neta − Costes Totales</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ============================================================ */}
+                        {/* SECCIÓN E: Performance del Equipo Comercial                  */}
+                        {/* ============================================================ */}
+                        <div className="bg-[#18181b] border border-white/5 rounded-2xl overflow-hidden">
+                            <div className="flex justify-between items-center p-6 border-b border-white/5">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    Performance Equipo Comercial — Avance en el Pathway
+                                </h3>
+                                <div className="text-xs text-zinc-500 italic">* Requiere Webhook Bitrix en tiempo real</div>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-sm">
+                                    <thead>
+                                        <tr className="border-b border-white/5">
+                                            <th className="text-left p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Comercial</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Asignados</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">En Negociación</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Estancados +30d</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Cerrados</th>
+                                            <th className="text-right p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Win Rate</th>
+                                            <th className="text-center p-4 text-zinc-500 font-medium uppercase tracking-wider text-xs">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/[0.03]">
+                                        {[
+                                            { name: 'Pedro Torres', assigned: 45, negotiation: 20, stagnant: 4, closed: 7, winRate: '15.6%', status: 'ok', statusLabel: 'En ritmo', statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+                                            { name: 'Marco Ruiz', assigned: 52, negotiation: 18, stagnant: 6, closed: 6, winRate: '11.5%', status: 'ok', statusLabel: 'En ritmo', statusColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+                                            { name: 'Ana Castillo', assigned: 40, negotiation: 14, stagnant: 9, closed: 4, winRate: '10.0%', status: 'warn', statusLabel: 'Atención', statusColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+                                            { name: 'Susan Méndez', assigned: 38, negotiation: 6, stagnant: 15, closed: 1, winRate: '2.6%', status: 'alert', statusLabel: 'Alerta', statusColor: 'bg-red-500/10 text-red-400 border-red-500/20' },
+                                        ].map((agent, i) => (
+                                            <tr key={i} className={`hover:bg-white/[0.02] transition-colors ${agent.status === 'alert' ? 'bg-red-500/[0.02]' : ''}`}>
+                                                <td className="p-4 text-white/80 font-medium">{agent.name}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{agent.assigned}</td>
+                                                <td className="p-4 text-blue-400 text-right font-mono">{agent.negotiation}</td>
+                                                <td className={`p-4 text-right font-mono font-semibold ${agent.stagnant > 10 ? 'text-red-400' : agent.stagnant > 6 ? 'text-amber-400' : 'text-white/40'}`}>{agent.stagnant}</td>
+                                                <td className="p-4 text-emerald-400 text-right font-mono font-semibold">{agent.closed}</td>
+                                                <td className="p-4 text-white/60 text-right font-mono">{agent.winRate}</td>
+                                                <td className="p-4 text-center">
+                                                    <span className={`text-xs font-bold px-2 py-1 rounded border ${agent.statusColor}`}>{agent.statusLabel}</span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {/* ============================================================ */}
+                        {/* SECCIÓN F: Leads en el Limbo                                 */}
+                        {/* ============================================================ */}
+                        <div className="bg-[#18181b] border border-red-500/10 rounded-2xl overflow-hidden">
+                            <div className="flex justify-between items-center p-6 border-b border-red-500/10">
+                                <h3 className="text-white/90 font-semibold flex items-center gap-2">
+                                    <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    Leads en el Limbo — Sin Contactar / Sin Avanzar
+                                </h3>
+                                <div className="text-xs bg-red-500/10 text-red-400 px-3 py-1 rounded-full border border-red-500/20 font-semibold">Requiere Acción</div>
+                            </div>
+                            <div className="p-6">
+                                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                                    <div className="md:col-span-1">
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Leads en Limbo</div>
+                                        <div className="text-4xl font-light text-red-400">812</div>
+                                        <div className="text-zinc-600 text-xs mt-1">24.9% del total captado</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Tiempo Promedio Sin Contacto</div>
+                                        <div className="text-4xl font-light text-amber-400">14d</div>
+                                        <div className="text-zinc-600 text-xs mt-1">promedio de días inactivos</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Canal con más Limbo</div>
+                                        <div className="text-4xl font-light text-white">Meta</div>
+                                        <div className="text-zinc-600 text-xs mt-1">67% de los sin contactar</div>
+                                    </div>
+                                    <div>
+                                        <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Revenue en Riesgo</div>
+                                        <div className="text-4xl font-light text-red-400">$1.99M</div>
+                                        <div className="text-zinc-600 text-xs mt-1">si el 36.4% califica</div>
+                                    </div>
+                                </div>
+                                <div className="bg-red-500/5 border border-red-500/10 rounded-xl p-4 text-sm text-red-300/70">
+                                    <strong className="text-red-400">Diagnóstico:</strong> 812 leads calificados pendientes de primer contacto o de seguimiento. El audio identifica este bloque como "no sabemos qué pasa". Con el Webhook de Bitrix activo, este número se actualizará en tiempo real, generando alertas automáticas cuando un lead supere los 3 días sin actividad.
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 )}
 
