@@ -275,6 +275,8 @@ export async function GET(req: NextRequest) {
         { month: 'Dic', revenue: 22400894, units: 100 }
     ];
 
+    const BUSINESS_PLAN_AVG_TICKET = 216380;
+
     const monthlyProjection = targets2026.map((target, index) => {
         const real = { count: 0, revenue: 0 };
         bofuDeals2026.forEach(deal => {
@@ -282,6 +284,12 @@ export async function GET(req: NextRequest) {
                 real.count++;
                 let amt = deal.opportunity || 0;
                 if (deal.currency === 'EUR') amt *= EUR_TO_USD;
+
+                // Si el monto es simbólico (reserva), aplicar el ticket promedio del plan de negocio
+                if (amt < 5000) {
+                    amt = BUSINESS_PLAN_AVG_TICKET;
+                }
+
                 real.revenue += amt;
             }
         });
