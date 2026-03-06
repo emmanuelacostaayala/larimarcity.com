@@ -42,43 +42,46 @@ export async function GET(req: NextRequest) {
     // Unassigned logic: ID "14" is the generic "Ventas" user
     const unassignedFilter = { OR: [{ assignedTo: "14" }, { assignedTo: "Ventas" }, { assignedTo: "" }, { assignedTo: null }] };
 
+    // Define interfaces for Prisma results
+    interface GroupByResult {
+        stageId: string;
+        _count: { id: number };
+        _sum: { opportunity: number | null };
+        currency?: string;
+    }
+
     // 1️⃣ Parallel summary counts
-    const [totalLeads, junkLeads, stagnantDeals, unassignedDeals, totalDeals, dealsByStageRows, dealsLast30DaysRows] = await Promise.all([
+    const [totalLeads, junkLeads, stagnantDeals, unassignedDeals, totalDeals, dealsByStageRowsRaw, dealsLast30DaysRowsRaw] = await Promise.all([
         prisma.lead.count(),
         prisma.lead.count({ where: { isJunk: true } }),
         prisma.deal.count({ where: { ...channelFilter, stageId: { contains: "NEW" }, stageDate: { lt: thirtyDaysAgo } } }),
         prisma.deal.count({ where: { ...unassignedFilter, ...channelFilter } }),
         prisma.deal.count({ where: channelFilter }),
         prisma.deal.groupBy({
-            by: ['stageId'],
+            by: ['stageId', 'currency'],
             where: channelFilter,
             _count: { id: true },
             _sum: { opportunity: true },
-            orderBy: { _count: { id: 'desc' } }
-        }) as any,
+        }),
         prisma.deal.groupBy({
             by: ['stageId'],
             where: { ...channelFilter, createdAt: { gte: thirtyDaysAgo } },
             _count: { id: true },
-            _sum: { opportunity: true }
-        }) as any,
-    ])
+        }),
+    ]);
 
-    const dealsByStage = dealsByStageRows.map((row: any) => ({ stage: row.stageId, count: row._count.id }));
+    const dealsByStageRows = dealsByStageRowsRaw as unknown as GroupByResult[];
+    const dealsLast30DaysRows = dealsLast30DaysRowsRaw as unknown as { stageId: string, _count: { id: number } }[];
+
+    const dealsByStage = Object.entries(
+        dealsByStageRows.reduce((acc, row) => {
+            acc[row.stageId] = (acc[row.stageId] || 0) + row._count.id;
+            return acc;
+        }, {} as Record<string, number>)
+    ).map(([stage, count]) => ({ stage, count }));
 
     // ============================================================
     // DICCIONARIO DEFINITIVO DE ETAPAS — Basado en Auditoría Real
-    // ============================================================
-    // Etapas BOFU (Ventas Confirmadas / Facturadas):
-    //   WON, SUCCESS           → Cierre estándar Bitrix
-    //   EXECUTING              → 85 deals (Contrato en ejecución) — VENTA REAL
-    //   PREPAYMENT_INVOICE     → 149 deals (Factura inicial emitida) — VENTA REAL
-    //   C14:PREPAYMENT_INVOIC  → 3 deals con $260,000 reales — VENTA REAL
-    //   FINAL_INVOICE          → 11 deals (Cierre total) — VENTA REAL
-    //   UC_4L9V5W              → 14 deals con $7,500 reales (etapa personalizada) — VENTA REAL
-    //   UC_88YTNT              → Depósito pagado — VENTA REAL
-    // ⚠️  AVISO: El 99.7% de deals tiene OPPORTUNITY=$0 porque los comerciales no
-    //     rellenan el campo "Total" en Bitrix. Solución: hacerlo obligatorio en el CRM.
     // ============================================================
     const BOFU_STAGES = new Set([
         "WON", "SUCCESS", "EXECUTING", "PREPAYMENT_INVOICE",
@@ -89,15 +92,16 @@ export async function GET(req: NextRequest) {
         "NEW", "C2:NEW", "C8:NEW", "C10:NEW", "C14:NEW", "C26:NEW", "1", "2", "UC_ZJW544"
     ]);
     const LOSE_STAGES = new Set(["LOSE", "JUNK", "APOLOGY", "UNKNOWN", "C14:LOSE", "C14:APOLOGY"]);
-    // Anything else = MOFU (en proceso: negociación, llamadas, etc.)
 
     let tofuDeals = 0;
     let mofuDeals = 0;
     let bofuDeals = 0;
-    let totalRevenue = 0;  // Solo deals con OPPORTUNITY real en Bitrix
-    let bofuDealsCount = 0; // Count for estimated revenue
+    let totalRevenue = 0;  // Revenue calculado con conversión de moneda
+    let bofuDealsCount = 0;
 
-    dealsByStageRows.forEach((row: any) => {
+    const EUR_TO_USD = 1.05; // Factor de conversión aproximado
+
+    dealsByStageRows.forEach((row) => {
         const stageUpper = row.stageId.toUpperCase();
         const isBofu = BOFU_STAGES.has(stageUpper) || BOFU_STAGES.has(row.stageId);
         const isTofu = TOFU_STAGES.has(stageUpper) || TOFU_STAGES.has(row.stageId);
@@ -106,23 +110,26 @@ export async function GET(req: NextRequest) {
         if (isBofu) {
             bofuDeals += row._count.id;
             bofuDealsCount += row._count.id;
-            totalRevenue += (row._sum.opportunity || 0);
+
+            // Lógica de conversión de moneda
+            let amount = row._sum.opportunity || 0;
+            if (row.currency === "EUR") {
+                amount = amount * EUR_TO_USD;
+            }
+            totalRevenue += amount;
         } else if (isTofu) {
             tofuDeals += row._count.id;
         } else if (!isLose) {
             mofuDeals += row._count.id;
         }
-        // LOSE deals are excluded from funnel but not from totalDeals
     });
 
-    // Estimated Revenue: For visualization, assume avg ticket = $130,000 (Larimar avg unit price)
-    // This is shown distinctly from real revenue so the user knows it's an estimate
     const AVG_TICKET_LARIMAR = 130000;
     const estimatedRevenue = bofuDealsCount * AVG_TICKET_LARIMAR;
-    const dealsWithRealRevenue = dealsByStageRows.filter((r: any) => (r._sum.opportunity || 0) > 0).length;
+    const dealsWithRealRevenue = dealsByStageRows.filter((r) => isFinite(r._sum.opportunity || 0) && (r._sum.opportunity || 0) > 0).length;
     const missingOpportunityCount = bofuDealsCount - dealsWithRealRevenue;
 
-    const dealsLast30Days = dealsLast30DaysRows.reduce((sum: number, row: any) => sum + row._count.id, 0);
+    const dealsLast30Days = dealsLast30DaysRows.reduce((sum, row) => sum + row._count.id, 0);
 
     const funnelMetrics = {
         tofu: (totalLeads || 0) + tofuDeals,
@@ -130,14 +137,16 @@ export async function GET(req: NextRequest) {
         bofu: bofuDeals,
     };
 
-    // --- Performance Equipo Comercial (Agrupar por Responsable) ---
-    const performanceRows = await (prisma.deal.groupBy({
+    // --- Performance Equipo Comercial ---
+    const performanceRowsRaw = await prisma.deal.groupBy({
         by: ['assignedTo'],
         where: channelFilter,
         _count: { id: true },
-    }) as any);
+    });
 
-    const salesPerformance = await Promise.all(performanceRows.map(async (p: any) => {
+    const performanceRows = performanceRowsRaw as unknown as { assignedTo: string | null, _count: { id: number } }[];
+
+    const salesPerformance = await Promise.all(performanceRows.map(async (p) => {
         const assignedTo = p.assignedTo || "Ventas";
         const [negotiation, closed, stagnant] = await Promise.all([
             prisma.deal.count({ where: { ...channelFilter, assignedTo: p.assignedTo, stageId: { notIn: Array.from(BOFU_STAGES).concat(Array.from(LOSE_STAGES)).concat(Array.from(TOFU_STAGES)) } } }),
@@ -159,45 +168,56 @@ export async function GET(req: NextRequest) {
     }));
 
     // --- Leads en el Limbo ---
-    // Definición: Leads calificados (DEAL) que no han avanzado de etapa en > 7 días
     const limboLimit = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const limboDealsCount = await prisma.deal.count({
-        where: {
-            ...channelFilter,
-            stageDate: { lt: limboLimit },
-            stageId: { in: Array.from(TOFU_STAGES).concat(["PREPARATION", "1", "2"]) }
-        }
+    const limboFilter = {
+        ...channelFilter,
+        stageDate: { lt: limboLimit },
+        stageId: { in: Array.from(TOFU_STAGES).concat(["PREPARATION", "1", "2"]) }
+    };
+
+    const limboDealsCount = await prisma.deal.count({ where: limboFilter });
+
+    // Encontrar el canal con más limbo dinámicamente
+    const limboChannelRows = await prisma.deal.groupBy({
+        by: ['utmSource'],
+        where: limboFilter,
+        _count: { id: true },
+        orderBy: { _count: { id: 'desc' } },
+        take: 1
     });
+
+    const topLimboChannel = limboChannelRows[0]?.utmSource || "Varios";
 
     const limboStats = {
         count: limboDealsCount,
         percentage: totalDeals > 0 ? ((limboDealsCount / totalDeals) * 100).toFixed(1) : "0",
-        topChannel: "Meta" // TODO: Add grouping by UTM to find channel with most limbo
+        topChannel: topLimboChannel
     };
 
-    // --- Cuellos de Botella (Tiempos de Salto) ---
-    // Simulación basada en datos reales de creación vs fecha de etapa
+    // --- Cuellos de Botella ---
     const cycleTimes = {
-        toQualified: 12.4, // Días promedio
+        toQualified: 12.4,
         toNegotiation: 5.2,
         toClose: 14.8
     };
 
     // --- Distribución Geográfica ---
-    const countryData = await (prisma.deal.groupBy({
+    const countryDataRaw = await prisma.deal.groupBy({
         by: ['pais'],
         where: channelFilter,
         _count: { id: true },
         orderBy: { _count: { id: 'desc' } },
         take: 3
-    }) as any);
+    });
 
-    const timezoneDistribution = countryData.map((c: any) => ({
+    const countryData = countryDataRaw as unknown as { pais: string | null, _count: { id: number } }[];
+
+    const timezoneDistribution = countryData.map((c) => ({
         region: c.pais || "Desconocido",
         volPct: totalDeals > 0 ? Math.round((c._count.id / totalDeals) * 100) : 0
     }));
 
-    // Aggregate leads by date (last 7 days)
+    // Aggregate leads by date
     const rawLeadsByDate = await prisma.$queryRaw<Array<{ date: Date, count: bigint }>>`
         SELECT DATE("createdAt") as date, COUNT(*) as count 
         FROM "Lead" 
@@ -210,7 +230,7 @@ export async function GET(req: NextRequest) {
         count: Number(r.count)
     }));
 
-    // Find duplicates (Leads with same email)
+    // Find duplicates
     const duplicateLeadsRaw = await prisma.$queryRaw<Array<{ count: bigint }>>`
         SELECT COUNT(*) as count 
         FROM "Lead" 
@@ -220,7 +240,7 @@ export async function GET(req: NextRequest) {
     `;
     const duplicateLeadsCount = duplicateLeadsRaw.reduce((sum, row) => sum + (Number(row.count) - 1), 0);
 
-    // 2️⃣ Fetch paginated data based on the selected tab
+    // 2️⃣ Fetch paginated data
     let items: any[] = [];
     let totalItems = 0;
 
@@ -282,7 +302,14 @@ export async function GET(req: NextRequest) {
             estimatedRevenue: number;
             missingOpportunityCount: number;
             dealsLast30Days: number;
-            salesPerformance: any[];
+            salesPerformance: {
+                name: string;
+                assigned: number;
+                negotiation: number;
+                closed: number;
+                stagnant: number;
+                winRate: string;
+            }[];
             limboStats: { count: number; percentage: string; topChannel: string };
             cycleTimes: { toQualified: number; toNegotiation: number; toClose: number };
             timezoneDistribution: { region: string; volPct: number }[];

@@ -37,8 +37,22 @@ interface DashboardData {
         leadsByDate?: { date: string; count: number }[];
         duplicateLeadsCount: number;
         funnelMetrics?: { tofu: number; mofu: number; bofu: number };
-        totalRevenue?: number;
-        dealsLast30Days?: number;
+        totalRevenue: number;
+        estimatedRevenue: number;
+        missingOpportunityCount: number;
+        dealsLast30Days: number;
+        salesPerformance: {
+            name: string;
+            assigned: number;
+            negotiation: number;
+            closed: number;
+            stagnant: number;
+            winRate: string;
+        }[];
+        limboStats: { count: number; percentage: string; topChannel: string };
+        cycleTimes: { toQualified: number; toNegotiation: number; toClose: number };
+        timezoneDistribution: { region: string; volPct: number }[];
+        syncStatus: any;
     };
     data: (Lead | Deal)[];
     pagination: {
@@ -535,16 +549,16 @@ export default function AdminDashboard() {
                                     {data?.summary.totalRevenue ? `$${data.summary.totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : '$0'}
                                 </div>
                                 <div className="text-zinc-400 text-[11px] mb-2">
-                                    {(data as any)?.summary.missingOpportunityCount > 0 && (
-                                        <span>+{(data as any).summary.missingOpportunityCount} deals sin monto en Bitrix</span>
+                                    {(data?.summary.missingOpportunityCount ?? 0) > 0 && (
+                                        <span>+{data?.summary.missingOpportunityCount} deals sin monto en Bitrix</span>
                                     )}
                                 </div>
                                 {/* Estimated Revenue */}
-                                {(data as any)?.summary.estimatedRevenue > 0 && (
+                                {(data?.summary.estimatedRevenue ?? 0) > 0 && (
                                     <div className="mt-2 border-t border-white/5 pt-2">
                                         <div className="text-[10px] text-amber-400/70 uppercase tracking-wider mb-0.5">⚠️ Estimado (ticket $130k)</div>
                                         <div className="text-lg font-light text-amber-300">
-                                            ${((data as any).summary.estimatedRevenue as number).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                                            ${data?.summary.estimatedRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                         </div>
                                     </div>
                                 )}
@@ -553,7 +567,7 @@ export default function AdminDashboard() {
                                     <span className="text-amber-400 mt-0.5">⚠️</span>
                                     <span className="text-amber-300/70 text-[10px] leading-tight">
                                         <strong>Acción Bitrix requerida:</strong> El campo &quot;Total&quot; (OPPORTUNITY) está vacío en el 99.7% de los deals. Los comerciales deben rellenarlo al mover un deal a EXECUTING o PREPAYMENT.<br />
-                                        Solo {(data as any)?.summary?.totalRevenue > 0 ? '6' : '0'} de {data?.summary.totalDeals || 0} deals tienen monto real registrado.
+                                        Solo {(data?.summary?.totalRevenue ?? 0) > 0 ? '6' : '0'} de {data?.summary.totalDeals || 0} deals tienen monto real registrado.
                                     </span>
                                 </div>
                             </div>
@@ -1104,7 +1118,7 @@ export default function AdminDashboard() {
                                                 )
                                             }
 
-                                            const agents = (data.summary as any).salesPerformance || [];
+                                            const agents = data?.summary.salesPerformance || [];
 
                                             if (agents.length === 0) {
                                                 return (
@@ -1114,7 +1128,7 @@ export default function AdminDashboard() {
                                                 )
                                             }
 
-                                            return agents.map((agent: any, i: number) => {
+                                            return agents.map((agent, i: number) => {
                                                 const winRateVal = parseFloat(agent.winRate);
                                                 const status = winRateVal >= 10 ? 'ok' : (winRateVal > 0 ? 'warn' : 'alert');
                                                 const statusLabel = status === 'ok' ? 'En ritmo' : (status === 'warn' ? 'Atención' : 'Revision Requerida');
@@ -1156,12 +1170,12 @@ export default function AdminDashboard() {
                                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                                     <div className="md:col-span-1">
                                         <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Leads en Limbo</div>
-                                        <div className="text-4xl font-light text-red-400">{(data?.summary as any).limboStats?.count || 0}</div>
-                                        <div className="text-zinc-600 text-xs mt-1">{(data?.summary as any).limboStats?.percentage || 0}% del total captado</div>
+                                        <div className="text-4xl font-light text-red-400">{data?.summary.limboStats?.count || 0}</div>
+                                        <div className="text-zinc-600 text-xs mt-1">{data?.summary.limboStats?.percentage || 0}% del total captado</div>
                                     </div>
                                     <div>
                                         <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">Canal con más Limbo</div>
-                                        <div className="text-4xl font-light text-white">{(data?.summary as any).limboStats?.topChannel || "Meta"}</div>
+                                        <div className="text-4xl font-light text-white">{data?.summary.limboStats?.topChannel || "Cargando..."}</div>
                                         <div className="text-zinc-600 text-xs mt-1">Estimado por actividad reciente</div>
                                     </div>
                                     <div className="md:col-span-2">
@@ -1171,31 +1185,31 @@ export default function AdminDashboard() {
                                             <div className="flex items-center gap-3">
                                                 <div className="w-1/3 text-[11px] font-medium text-white/50 text-right">Bruto → Calificado</div>
                                                 <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden relative border border-white/5">
-                                                    <div className="h-full bg-red-500 rounded-full" style={{ width: `${((data?.summary as any).cycleTimes?.toQualified || 0) * 5}%` }}></div>
+                                                    <div className="h-full bg-red-500 rounded-full" style={{ width: `${(data?.summary.cycleTimes?.toQualified || 0) * 5}%` }}></div>
                                                 </div>
-                                                <div className="w-16 text-right text-xs font-bold text-red-400 drop-shadow-[0_0_5px_rgba(248,113,113,0.5)]">{(data?.summary as any).cycleTimes?.toQualified || 0} días</div>
+                                                <div className="w-16 text-right text-xs font-bold text-red-400 drop-shadow-[0_0_5px_rgba(248,113,113,0.5)]">{data?.summary.cycleTimes?.toQualified || 0} días</div>
                                             </div>
                                             {/* Salto 2 */}
                                             <div className="flex items-center gap-3">
                                                 <div className="w-1/3 text-[11px] font-medium text-white/50 text-right">Calificado → Negociación</div>
                                                 <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden relative border border-white/5">
-                                                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${((data?.summary as any).cycleTimes?.toNegotiation || 0) * 10}%` }}></div>
+                                                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${(data?.summary.cycleTimes?.toNegotiation || 0) * 10}%` }}></div>
                                                 </div>
-                                                <div className="w-16 text-right text-xs font-bold text-emerald-400">{(data?.summary as any).cycleTimes?.toNegotiation || 0} días</div>
+                                                <div className="w-16 text-right text-xs font-bold text-emerald-400">{data?.summary.cycleTimes?.toNegotiation || 0} días</div>
                                             </div>
                                             {/* Salto 3 */}
                                             <div className="flex items-center gap-3">
                                                 <div className="w-1/3 text-[11px] font-medium text-white/50 text-right">Negociación → Cierre</div>
                                                 <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden relative border border-white/5">
-                                                    <div className="h-full bg-amber-500 rounded-full" style={{ width: `${((data?.summary as any).cycleTimes?.toClose || 0) * 5}%` }}></div>
+                                                    <div className="h-full bg-amber-500 rounded-full" style={{ width: `${(data?.summary.cycleTimes?.toClose || 0) * 5}%` }}></div>
                                                 </div>
-                                                <div className="w-16 text-right text-xs font-bold text-amber-400">{(data?.summary as any).cycleTimes?.toClose || 0} días</div>
+                                                <div className="w-16 text-right text-xs font-bold text-amber-400">{data?.summary.cycleTimes?.toClose || 0} días</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="bg-red-500/5 border border-red-500/10 rounded-xl p-4 text-sm text-red-300/70">
-                                    <strong className="text-red-400">Diagnóstico:</strong> {(data?.summary as any).limboStats?.count || 0} negocios calificados pendientes de primer contacto o de seguimiento activo.
+                                    <strong className="text-red-400">Diagnóstico:</strong> {data?.summary.limboStats?.count || 0} negocios calificados pendientes de primer contacto o de seguimiento activo.
                                 </div>
                             </div>
                         </div>
@@ -1220,7 +1234,7 @@ export default function AdminDashboard() {
                                 </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {(data?.summary as any).timezoneDistribution?.map((item: any, idx: number) => {
+                                    {data?.summary.timezoneDistribution?.map((item, idx: number) => {
                                         const icons = ['🌎', '🌍', '🌏'];
                                         const colors = ['blue', 'purple', 'amber'];
                                         return (
