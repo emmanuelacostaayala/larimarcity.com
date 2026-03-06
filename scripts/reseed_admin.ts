@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     const email = "admin@larimarcity.com";
-    const password = "L4r1m4r_2026_!Safe";
+    const password = process.env.ADMIN_PASSWORD || "L4r1m4r_2026_!Safe";
     const passwordHash = await bcrypt.hash(password, 10);
 
     console.log(`Creating admin user: ${email}...`);

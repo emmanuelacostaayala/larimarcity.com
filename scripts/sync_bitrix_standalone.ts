@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import fetch from "node-fetch";
+// Use native global fetch (Node 18+) to avoid build issues in Vercel
 
 const prisma = new PrismaClient();
-const BITRIX_BASE_URL = "https://clerhp.bitrix24.es/rest/17138/uffopruff8sqx8i9";
+const BITRIX_BASE_URL = process.env.BITRIX_BASE_URL || "";
 
 async function syncDeals(priority = true) {
     console.log(`[STANDALONE SYNC] priority=${priority}`);
