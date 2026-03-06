@@ -37,11 +37,29 @@ model Deal {
   title        String
   stageId      String   // e.g., "NEW", "PREPARATION", "LOSE", "1"
   assignedTo   String?  // e.g., "Ventas", "Pedro Torres"
-  stageDate    DateTime? // the last time the stage was changed
+  opportunity  Float     @default(0)
+  currency     String   @default("USD")
+  proyecto     String?
+  interes      String?
+  pais         String?
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  bitrixCreatedAt DateTime?
+  stageDate    DateTime?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   
   // A deal can be created from a Lead
   leadId       String?
   lead         Lead?    @relation(fields: [leadId], references: [id])
+}
+
+model SyncState {
+  id          String   @id @default(uuid())
+  entity      String   @unique
+  lastId      String?
+  lastSync    DateTime @default(now())
+  totalCount  Int      @default(0)
+  status      String   @default("IDLE")
 }
