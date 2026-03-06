@@ -52,6 +52,10 @@ interface DashboardData {
         limboStats: { count: number; percentage: string; topChannel: string };
         cycleTimes: { toQualified: number; toNegotiation: number; toClose: number };
         timezoneDistribution: { region: string; volPct: number }[];
+        salesByChannel: {
+            google: { count: number; revenue: number };
+            meta: { count: number; revenue: number };
+        };
         syncStatus: any;
     };
     data: (Lead | Deal)[];
@@ -622,7 +626,9 @@ export default function AdminDashboard() {
                                         <BarChart
                                             data={(() => {
                                                 // BUG#2, #3, #6, #7 FIX — usar funnelMetrics reales del API
-                                                const totalAdsLeads = (googleAdsData?.aggregated_metrics?.total_conversions || 0) + (metaAdsData?.aggregated_metrics?.total_leads || 0);
+                                                const googleConversions = Math.floor(googleAdsData?.aggregated_metrics?.total_conversions || 0);
+                                                const metaLeads = Math.floor(metaAdsData?.aggregated_metrics?.total_leads || 0);
+                                                const totalAdsLeads = googleConversions + metaLeads;
                                                 const tofu = data?.summary.funnelMetrics?.tofu || totalAdsLeads;
                                                 const mofu = data?.summary.funnelMetrics?.mofu || 0;
                                                 const bofu = data?.summary.funnelMetrics?.bofu || 0;
@@ -636,7 +642,7 @@ export default function AdminDashboard() {
                                                 const finalInv = getStageCount('FINAL_INVOICE');
 
                                                 const strategicPipelineData = [
-                                                    { stage: 'Lead Generation\n(TOFU)', value: totalAdsLeads, rate: '100% — Ads' },
+                                                    { stage: 'Lead Generation\n(TOFU)', value: Math.round(totalAdsLeads), rate: '100% — Ads' },
                                                     { stage: 'Deals en CRM\n(MOFU)', value: dbDeals, rate: totalAdsLeads > 0 ? `${((dbDeals / totalAdsLeads) * 100).toFixed(1)}%` : '0%' },
                                                     { stage: 'Calificados\n(MOFU activo)', value: mofu, rate: dbDeals > 0 ? `${((mofu / dbDeals) * 100).toFixed(1)}%` : '0%' },
                                                     { stage: 'Ventas Conf.\n(BOFU)', value: bofu, rate: mofu > 0 ? `${((bofu / mofu) * 100).toFixed(1)}%` : '0%' },
@@ -644,7 +650,7 @@ export default function AdminDashboard() {
 
                                                 // Vista Alberto — cascada con 8 etapas reales solicitadas
                                                 const operativePipelineData = [
-                                                    { stage: 'Leads Marketing', value: totalAdsLeads, rate: '100% — Ads' },
+                                                    { stage: 'Leads Marketing', value: Math.round(totalAdsLeads), rate: '100% — Ads' },
                                                     { stage: 'Leads Convertidos', value: dbDeals, rate: totalAdsLeads > 0 ? `${((dbDeals / totalAdsLeads) * 100).toFixed(1)}%` : '0%' },
                                                     { stage: 'Leads Calificados', value: getStageCount('1'), rate: dbDeals > 0 ? `${((getStageCount('1') / dbDeals) * 100).toFixed(1)}%` : '0%' },
                                                     { stage: 'Calificados para Venta', value: getStageCount('2'), rate: getStageCount('1') > 0 ? `${((getStageCount('2') / getStageCount('1')) * 100).toFixed(1)}%` : '0%' },
@@ -682,7 +688,7 @@ export default function AdminDashboard() {
                                                         return (
                                                             <div className="bg-[#111] border border-white/10 p-4 rounded-lg shadow-xl">
                                                                 <p className="font-semibold text-white/90 mb-1">{p.stage}</p>
-                                                                <p className="text-2xl font-light text-blue-400">{p.value.toLocaleString()}</p>
+                                                                <p className="text-2xl font-light text-blue-400">{Math.round(p.value).toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
                                                                 <p className="text-xs text-zinc-500 mt-1">Tasa de conversión: {p.rate}</p>
                                                             </div>
                                                         );
@@ -752,14 +758,23 @@ export default function AdminDashboard() {
                                                         <div className="text-zinc-500 text-xs mb-1">Leads (CPL)</div>
                                                         <div className="text-white/80 font-mono">
                                                             {metaAdsData ? (
-                                                                <>{Math.floor(metaAdsData.aggregated_metrics.total_leads).toLocaleString()} <span className="text-zinc-500 text-xs font-normal">(${metaAdsData.aggregated_metrics.average_cpl.toFixed(2)})</span></>
+                                                                <>{Math.floor(metaAdsData.aggregated_metrics.total_leads).toLocaleString(undefined, { maximumFractionDigits: 0 })} <span className="text-zinc-500 text-xs font-normal">(${metaAdsData.aggregated_metrics.average_cpl.toFixed(2)})</span></>
                                                             ) : <span className="text-zinc-600">—</span>}
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div className="text-zinc-500 text-xs mb-1">CPM / CPC</div>
+                                                        <div className="text-zinc-500 text-xs mb-1">Ventas (CAC)</div>
                                                         <div className="text-white/80 font-mono">
-                                                            {metaAdsData ? `$${metaAdsData.aggregated_metrics.average_cpc.toFixed(2)}` : <span className="text-zinc-600">—</span>}
+                                                            {data?.summary.salesByChannel ? (
+                                                                <>
+                                                                    {data.summary.salesByChannel.meta.count}
+                                                                    <span className="text-zinc-500 text-xs font-normal ml-1">
+                                                                        (${data.summary.salesByChannel.meta.count > 0
+                                                                            ? ((metaAdsData?.aggregated_metrics.total_spend || 0) / data.summary.salesByChannel.meta.count).toFixed(0)
+                                                                            : '0'})
+                                                                    </span>
+                                                                </>
+                                                            ) : <span className="text-zinc-600">—</span>}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -798,11 +813,18 @@ export default function AdminDashboard() {
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                {/* BUG#4 FIX — Ventas no simuladas. Pendiente cruce UTM Bitrix */}
                                                                 <div className="text-zinc-500 text-xs mb-1">Ventas (CAC)</div>
-                                                                <div className="text-zinc-500 font-mono text-xs">
-                                                                    Pendiente Bitrix
-                                                                    <span className="block text-zinc-600 text-[10px]">UTM cruce no implementado</span>
+                                                                <div className="text-white/80 font-mono">
+                                                                    {data?.summary.salesByChannel ? (
+                                                                        <>
+                                                                            {data.summary.salesByChannel.google.count}
+                                                                            <span className="text-zinc-500 text-xs font-normal ml-1">
+                                                                                (${data.summary.salesByChannel.google.count > 0
+                                                                                    ? (spend / data.summary.salesByChannel.google.count).toFixed(0)
+                                                                                    : '0'})
+                                                                            </span>
+                                                                        </>
+                                                                    ) : <span className="text-zinc-600">—</span>}
                                                                 </div>
                                                             </div>
                                                         </>
@@ -843,11 +865,18 @@ export default function AdminDashboard() {
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                {/* BUG#4 FIX — Ventas no simuladas. Pendiente cruce UTM Bitrix */}
                                                                 <div className="text-zinc-500 text-xs mb-1">Ventas (CAC)</div>
-                                                                <div className="text-zinc-500 font-mono text-xs">
-                                                                    Pendiente Bitrix
-                                                                    <span className="block text-zinc-600 text-[10px]">UTM cruce no implementado</span>
+                                                                <div className="text-white/80 font-mono">
+                                                                    {data?.summary.salesByChannel ? (
+                                                                        <>
+                                                                            {data.summary.salesByChannel.google.count}
+                                                                            <span className="text-zinc-500 text-xs font-normal ml-1">
+                                                                                (${data.summary.salesByChannel.google.count > 0
+                                                                                    ? (spend / data.summary.salesByChannel.google.count).toFixed(0)
+                                                                                    : '0'})
+                                                                            </span>
+                                                                        </>
+                                                                    ) : <span className="text-zinc-600">—</span>}
                                                                 </div>
                                                             </div>
                                                         </>
