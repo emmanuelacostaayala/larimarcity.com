@@ -252,6 +252,52 @@ export async function GET(req: NextRequest) {
         }
     });
 
+    // --- Proyecciones 2026 — Real vs Objetivo (Sin SAGE) ---
+    const startOfYear2026 = new Date('2026-01-01T00:00:00Z');
+    const bofuDeals2026 = await prisma.deal.findMany({
+        where: { createdAt: { gte: startOfYear2026 }, stageId: { in: Array.from(BOFU_STAGES) } },
+        select: { createdAt: true, opportunity: true, currency: true }
+    });
+
+    // Objetivos extraídos de la imagen KPIs Plan Negocio 2026
+    const targets2026 = [
+        { month: 'Ene', revenue: 6661383, units: 33 },
+        { month: 'Feb', revenue: 6518232, units: 33 },
+        { month: 'Mar', revenue: 7578190, units: 37 },
+        { month: 'Abr', revenue: 8104015, units: 40 },
+        { month: 'May', revenue: 11050405, units: 53 },
+        { month: 'Jun', revenue: 12318718, units: 57 },
+        { month: 'Jul', revenue: 13360208, units: 62 },
+        { month: 'Ago', revenue: 14413410, units: 66 },
+        { month: 'Sep', revenue: 18187092, units: 83 },
+        { month: 'Oct', revenue: 20031997, units: 91 },
+        { month: 'Nov', revenue: 21444082, units: 95 },
+        { month: 'Dic', revenue: 22400894, units: 100 }
+    ];
+
+    const monthlyProjection = targets2026.map((target, index) => {
+        const real = { count: 0, revenue: 0 };
+        bofuDeals2026.forEach(deal => {
+            if (deal.createdAt.getUTCMonth() === index) {
+                real.count++;
+                let amt = deal.opportunity || 0;
+                if (deal.currency === 'EUR') amt *= EUR_TO_USD;
+                real.revenue += amt;
+            }
+        });
+        return {
+            month: target.month,
+            targetRevenue: target.revenue,
+            realRevenue: real.revenue,
+            targetUnits: target.units,
+            realUnits: real.count
+        };
+    });
+
+    const totalRevenue2026 = monthlyProjection.reduce((acc, m) => acc + m.realRevenue, 0);
+    const totalUnits2026 = monthlyProjection.reduce((acc, m) => acc + m.realUnits, 0);
+    const averageTicket2026 = totalUnits2026 > 0 ? totalRevenue2026 / totalUnits2026 : 0;
+
     // Aggregate leads by date
     const rawLeadsByDate = await prisma.$queryRaw<Array<{ date: Date, count: bigint }>>`
         SELECT DATE("createdAt") as date, COUNT(*) as count 
@@ -353,6 +399,14 @@ export async function GET(req: NextRequest) {
                 meta: { count: number; revenue: number };
             };
             syncStatus: any;
+            analytics2026: {
+                monthly: any[];
+                totalRevenue: number;
+                totalUnits: number;
+                averageTicket: number;
+                targetRevenueTotal: number;
+                targetUnitsTotal: number;
+            };
         };
         data: any[];
         pagination: {
@@ -377,6 +431,14 @@ export async function GET(req: NextRequest) {
             cycleTimes,
             timezoneDistribution,
             salesByChannel,
+            analytics2026: {
+                monthly: monthlyProjection,
+                totalRevenue: totalRevenue2026,
+                totalUnits: totalUnits2026,
+                averageTicket: averageTicket2026,
+                targetRevenueTotal: 162068626,
+                targetUnitsTotal: 749
+            },
             syncStatus: null
         },
         data: items,
